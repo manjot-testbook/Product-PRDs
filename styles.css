@@ -1,50 +1,32 @@
 /* ============================================================
-   Testbook Android Home Screen Widget System — Hybrid Edition
-   Obsidian Glassmorphism + Mobbin Typographic Precision
-   Duolingo Emotion + Bevel Performance + Nike Action Launcher
+   Testbook Android Home Screen Widget — Premium Light Edition
+   Directly Inspired by Duolingo (Image 1) & Apple/Bevel Widgets
+   Vibrant Full-Bleed Sky Blue Gradient + Frosted Glass Accents
    ============================================================ */
 
 :root {
-  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* App Shell Canvas */
-  --bg-desktop: #06090e;
-  --bg-sidebar: #0a0f18;
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --text-main: #f8fafc;
+  /* App Shell Canvas (Clean Studio) */
+  --bg-studio: #f1f5f9;
+  --bg-sidebar: #ffffff;
+  --border-sidebar: #e2e8f0;
+  --text-dark: #0f172a;
   --text-muted: #64748b;
 
   /* ==========================================================
-     HYBRID OBSIDIAN GLASS WIDGET TOKENS (Direct from Mobbin)
+     DUOLINGO VIBRANT SKY-BLUE WIDGET TOKENS (IMAGE 1)
      ========================================================== */
-  --w-glass-bg: linear-gradient(165deg, rgba(17, 24, 39, 0.94) 0%, rgba(11, 17, 30, 0.97) 100%);
-  --w-glass-backdrop: blur(28px);
-  --w-border: rgba(255, 255, 255, 0.08);
-  --w-rim-light: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
-  --w-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --w-duo-bg: linear-gradient(155deg, #1e60db 0%, #2b7af0 50%, #38bdf8 100%);
+  --w-duo-shadow: 0 24px 50px -12px rgba(30, 96, 219, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2);
   --w-radius: 34px;
   --w-inner-radius: 20px;
-
-  /* Content Colors */
-  --w-title: #ffffff;
-  --w-body: #e2e8f0;
-  --w-faint: #64748b;
-  --w-micro-label: #94a3b8;
   
-  /* Vibrant Accents */
-  --tb-cyan: #00f2fe;
-  --tb-cyan-glow: rgba(0, 242, 254, 0.25);
-  --tb-blue: #0284c7;
-  --tb-blue-glow: rgba(2, 132, 199, 0.3);
-  --tb-amber: #ffb800;
-  --tb-amber-glow: rgba(255, 184, 0, 0.25);
-  --tb-green: #10b981;
-  --tb-red: #ef4444;
-  --tb-red-glow: rgba(239, 68, 68, 0.35);
-
-  --w-inner-card: rgba(255, 255, 255, 0.035);
-  --w-inner-border: rgba(255, 255, 255, 0.06);
+  /* Frosted White Pods on Blue Canvas */
+  --w-pod-bg: rgba(255, 255, 255, 0.16);
+  --w-pod-border: rgba(255, 255, 255, 0.25);
+  --w-pod-blur: blur(14px);
 }
 
 * {
@@ -54,8 +36,8 @@
 }
 
 body {
-  background: var(--bg-desktop);
-  color: var(--text-main);
+  background: var(--bg-studio);
+  color: var(--text-dark);
   font-family: var(--font-display);
   min-height: 100vh;
   display: flex;
@@ -64,11 +46,10 @@ body {
 }
 
 /* Studio Header */
-.studio-nav {
+.top-nav {
   height: 58px;
-  background: rgba(10, 15, 24, 0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-sidebar);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,39 +57,41 @@ body {
   z-index: 50;
 }
 
-.brand-wrapper {
+.brand-box {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .brand-icon {
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #0284c7, #00f2fe);
+  background: linear-gradient(135deg, #1e60db, #38bdf8);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
   font-size: 0.95rem;
+  box-shadow: 0 3px 10px rgba(30, 96, 219, 0.3);
 }
 
-.brand-text {
+.brand-title {
   font-size: 1rem;
   font-weight: 850;
   letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
 .brand-badge {
   font-size: 0.68rem;
   font-weight: 800;
-  padding: 0.18rem 0.55rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: rgba(0, 242, 254, 0.12);
-  color: #00f2fe;
-  border: 1px solid rgba(0, 242, 254, 0.25);
+  background: #eff6ff;
+  color: #1e60db;
+  border: 1px solid #bfdbfe;
 }
 
 .header-links {
@@ -118,47 +101,47 @@ body {
 }
 
 .nav-link {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  color: #cbd5e1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
 .nav-link.primary {
-  background: #0284c7;
+  background: #1e60db;
   color: white;
-  border-color: #0284c7;
+  border-color: #1e60db;
 }
 
 /* Studio Layout */
-.studio-layout {
+.layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 320px 1fr;
   min-height: calc(100vh - 58px);
 }
 
-@media (max-width: 1024px) {
-  .studio-layout {
+@media (max-width: 960px) {
+  .layout {
     grid-template-columns: 1fr;
   }
 }
 
 /* Sidebar Controls */
-.controls-sidebar {
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border-subtle);
+.controls-panel {
+  background: #ffffff;
+  border-right: 1px solid var(--border-sidebar);
   padding: 1.25rem;
   overflow-y: auto;
   display: flex;
@@ -166,19 +149,19 @@ body {
   gap: 1.15rem;
 }
 
-.control-group {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid var(--border-subtle);
+.panel-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 14px;
   padding: 0.9rem;
 }
 
-.group-title {
-  font-size: 0.65rem;
+.panel-title {
+  font-size: 0.68rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #94a3b8;
+  color: #64748b;
   margin-bottom: 0.65rem;
   display: flex;
   align-items: center;
@@ -188,34 +171,34 @@ body {
 .chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .chip-btn {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
   font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.35rem 0.65rem;
+  font-weight: 750;
+  padding: 0.4rem 0.7rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .chip-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  border-color: #1e60db;
+  color: #1e60db;
 }
 
 .chip-btn.active {
-  background: #0284c7;
-  border-color: #00f2fe;
+  background: #1e60db;
+  border-color: #1e60db;
   color: white;
-  box-shadow: 0 0 14px rgba(2, 132, 199, 0.45);
+  box-shadow: 0 4px 12px rgba(30, 96, 219, 0.3);
 }
 
-/* Mascot Preview Tiles */
+/* Mascot Thumbnails */
 .mascot-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -223,18 +206,18 @@ body {
 }
 
 .mascot-card {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 9px;
-  padding: 0.35rem;
+  padding: 0.4rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .mascot-card:hover, .mascot-card.active {
-  border-color: #00f2fe;
-  background: rgba(0, 242, 254, 0.08);
+  border-color: #1e60db;
+  background: #eff6ff;
 }
 
 .mascot-card img {
@@ -246,14 +229,14 @@ body {
 .mascot-card span {
   display: block;
   font-size: 0.6rem;
-  font-weight: 700;
-  color: #94a3b8;
+  font-weight: 750;
+  color: #64748b;
   margin-top: 0.2rem;
 }
 
-/* Center Canvas Phone Stage */
-.phone-stage {
-  background: radial-gradient(circle at 50% 25%, #131b2e 0%, #06090e 75%);
+/* Center Phone Canvas */
+.phone-canvas {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -262,55 +245,43 @@ body {
   overflow-y: auto;
 }
 
-/* Android Hardware Shell */
+/* Android Phone Hardware */
 .phone-shell {
   width: 396px;
   min-height: 825px;
-  background: #000;
+  background: #ffffff;
   border-radius: 54px;
-  border: 11px solid #1a2333;
-  box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  border: 11px solid #0f172a;
+  box-shadow: 0 35px 80px -20px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Phone Wallpaper Surface */
+/* Wallpaper Background */
 .phone-wallpaper {
   flex: 1;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 0.75rem 0.95rem 1rem 0.95rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.75rem 0.95rem 1rem 0.95rem;
   position: relative;
-  transition: background-image 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-.wp-cosmic {
-  background-image: linear-gradient(180deg, rgba(6, 9, 14, 0.35) 0%, rgba(6, 9, 14, 0.75) 100%), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80');
-}
-.wp-mountains {
-  background-image: linear-gradient(180deg, rgba(6, 9, 14, 0.25) 0%, rgba(6, 9, 14, 0.75) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80');
-}
-.wp-obsidian {
-  background-image: radial-gradient(circle at 50% 30%, #1e293b 0%, #06090e 100%);
-}
-
-/* Android Status Bar */
+/* Android Top Status Bar */
 .android-top-bar {
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 0.8rem;
-  color: #ffffff;
+  color: #0f172a;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
   user-select: none;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .top-icons {
@@ -320,115 +291,101 @@ body {
   font-size: 0.7rem;
 }
 
-/* At a Glance Date */
+/* At a Glance Header */
 .glance-widget {
   padding: 0.2rem 0.5rem 0.5rem 0.5rem;
-  color: white;
+  color: #0f172a;
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 800;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Widget Mounting Slot */
+/* Widget Mount Area */
 .widget-mount-area {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 /* ============================================================
-   THE HYBRID OBSIDIAN 4×5 PRIME COCKPIT WIDGET
+   DUOLINGO LIGHT EDITION — 4×5 PRIME COCKPIT WIDGET
+   Full-Bleed Sky Blue Gradient Canvas (Image 1 Aesthetic)
    ============================================================ */
-.hybrid-widget-prime {
-  background: var(--w-glass-bg);
-  backdrop-filter: var(--w-glass-backdrop);
-  -webkit-backdrop-filter: var(--w-glass-backdrop);
-  border: 1px solid var(--w-border);
-  box-shadow: var(--w-shadow), var(--w-rim-light);
+.duo-widget-prime {
+  background: var(--w-duo-bg);
+  box-shadow: var(--w-duo-shadow);
   border-radius: var(--w-radius);
-  padding: 1.25rem 1.25rem 1.15rem 1.25rem;
-  color: var(--w-body);
+  padding: 1.35rem;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 1.05rem;
+  gap: 1.15rem;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   transition: all 0.25s ease;
 }
 
 /* Evening Urgency Aura (> 8 PM) */
-.hybrid-widget-prime.urgent {
-  background: linear-gradient(165deg, rgba(69, 10, 10, 0.94) 0%, rgba(20, 5, 5, 0.98) 100%);
-  box-shadow: 0 24px 55px -12px rgba(239, 68, 68, 0.5), inset 0 1px 1px 0 rgba(239, 68, 68, 0.3);
-  border-color: rgba(239, 68, 68, 0.25);
-}
-
-/* Milestone Celebration Aura */
-.hybrid-widget-prime.celebration {
-  background: linear-gradient(165deg, rgba(30, 24, 10, 0.94) 0%, rgba(15, 12, 5, 0.98) 100%);
-  box-shadow: 0 24px 55px -12px rgba(245, 158, 11, 0.4), inset 0 1px 1px 0 rgba(245, 158, 11, 0.3);
-  border-color: rgba(245, 158, 11, 0.25);
+.duo-widget-prime.urgent {
+  background: linear-gradient(155deg, #400f12 0%, #7f1d1d 55%, #b91c1c 100%);
+  box-shadow: 0 24px 50px -12px rgba(185, 28, 28, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
 /* 1. Header Row */
-.hw-header-row {
+.dw-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.hw-exam-pill {
+.dw-exam-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 850;
   color: #ffffff;
   cursor: pointer;
-  transition: all 0.15s ease;
+  backdrop-filter: blur(8px);
 }
 
-.hw-exam-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.hw-dot {
+.dw-exam-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--tb-cyan);
-  box-shadow: 0 0 8px var(--tb-cyan);
+  background: #ffffff;
 }
 
-.hw-sync-tag {
-  font-size: 0.62rem;
-  font-weight: 800;
+.dw-live-sync {
+  font-size: 0.65rem;
+  font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--w-faint);
+  color: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-.hw-sync-tag span {
+.dw-live-sync span {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 6px white;
 }
 
-/* 2. Hero Zone: Mascot & Streak (Duolingo Soul) */
-.hw-hero-zone {
+/* 2. Hero Zone: Streak & Floating Mascot */
+.dw-hero-zone {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -436,89 +393,30 @@ body {
   position: relative;
 }
 
-.hw-hero-left {
+.dw-hero-left {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.hw-micro-label {
-  font-size: 0.62rem;
-  font-weight: 850;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--w-micro-label);
-}
-
-.hw-streak-display {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-}
-
-.hw-streak-number {
+.dw-streak-title {
   font-size: 2.35rem;
   font-weight: 900;
-  color: #ffffff;
   letter-spacing: -0.04em;
   line-height: 1;
-  font-variant-numeric: tabular-nums;
+  color: #ffffff;
 }
 
-.hw-streak-unit {
+.dw-streak-sub {
   font-size: 0.82rem;
-  font-weight: 850;
-  color: var(--tb-cyan);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-weight: 750;
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.hybrid-widget-prime.urgent .hw-streak-unit {
-  color: #ff5e3a;
-}
-
-.hybrid-widget-prime.celebration .hw-streak-unit {
-  color: var(--tb-amber);
-}
-
-/* 7-Day Floating Habit Pills */
-.hw-habit-trail {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.3rem;
-}
-
-.hw-habit-bubble {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  font-weight: 900;
-  color: transparent;
-  transition: all 0.2s ease;
-}
-
-.hw-habit-bubble.done {
-  background: var(--tb-cyan);
-  color: #06090e;
-  box-shadow: 0 0 8px var(--tb-cyan-glow);
-}
-
-.hw-habit-bubble.today {
-  background: white;
-  color: #06090e;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-}
-
-/* Floating Mascot (Depth without card container) */
-.hw-mascot-anchor {
-  width: 98px;
-  height: 98px;
+/* Mascot Anchor (Zero White Box Artifacts!) */
+.dw-mascot-box {
+  width: 104px;
+  height: 104px;
   flex-shrink: 0;
   position: relative;
   display: flex;
@@ -526,24 +424,88 @@ body {
   justify-content: center;
 }
 
-.hw-mascot-img {
-  width: 104px;
-  height: 104px;
+.dw-mascot-img {
+  width: 110px;
+  height: 110px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hw-mascot-img:hover {
+.dw-mascot-img:hover {
   transform: scale(1.08) rotate(2deg);
 }
 
-/* 3. Bevel Quantified Readiness Zone */
-.hw-quantified-card {
-  background: var(--w-inner-card);
-  border: 1px solid var(--w-inner-border);
+/* 3. Days of the Week Row (Direct 1:1 Match to Duolingo Image 1) */
+.dw-days-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 0;
+}
+
+.dw-day-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dw-day-letter {
+  font-size: 0.68rem;
+  font-weight: 850;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+}
+
+.dw-day-capsule {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+/* Done Day (Filled White with Checkmark) */
+.dw-day-column.done .dw-day-capsule {
+  background: #ffffff;
+  color: #1e60db;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.duo-widget-prime.urgent .dw-day-column.done .dw-day-capsule {
+  color: #b91c1c;
+}
+
+/* Today Active Day (Glow Ring) */
+.dw-day-column.today .dw-day-capsule {
+  background: rgba(255, 255, 255, 0.35);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* Upcoming Empty */
+.dw-day-column.upcoming .dw-day-capsule {
+  background: rgba(255, 255, 255, 0.12);
+  color: transparent;
+}
+
+/* 4. Bevel Quantified Readiness Pod (Frosted Glass) */
+.dw-readiness-pod {
+  background: var(--w-pod-bg);
+  border: 1px solid var(--w-pod-border);
+  backdrop-filter: var(--w-pod-blur);
+  -webkit-backdrop-filter: var(--w-pod-blur);
   border-radius: var(--w-inner-radius);
-  padding: 0.85rem 1rem;
+  padding: 0.95rem 1.15rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -551,270 +513,225 @@ body {
   transition: all 0.15s ease;
 }
 
-.hw-quantified-card:hover {
-  border-color: rgba(0, 242, 254, 0.3);
+.dw-readiness-pod:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
-.hw-cutoff-row {
+.dw-pod-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
 
-.hw-score-num {
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: var(--tb-cyan);
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.hw-score-total {
-  font-size: 0.78rem;
-  color: var(--w-faint);
-  font-weight: 700;
-}
-
-/* Glowing Cutoff Spectrum Slider */
-.hw-spectrum-line {
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 45%, #00f2fe 75%, #10b981 100%);
-  position: relative;
-  margin: 0.15rem 0;
-  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-}
-
-.hw-spectrum-pin {
-  position: absolute;
-  top: -4px;
-  left: 65%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2.5px solid #00f2fe;
-  box-shadow: 0 0 10px #00f2fe;
-}
-
-.hw-spectrum-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.6rem;
-  font-weight: 800;
-  color: var(--w-faint);
-}
-
-/* 3 Big Glanceable Metrics */
-.hw-stats-trio {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding-top: 0.45rem;
-  border-top: 1px solid var(--w-inner-border);
-  text-align: center;
-}
-
-.hw-stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.hw-stat-val {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-}
-
-.hw-stat-val.highlight {
-  color: var(--tb-cyan);
-}
-
-.hw-stat-tag {
-  font-size: 0.58rem;
+.dw-pod-label {
+  font-size: 0.65rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--w-micro-label);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* 4. Tactical AI Anchor (Ahead Style) */
-.hw-ai-nudge-pill {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
-  padding: 0.5rem 0.75rem;
+.dw-score-val {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+/* Cutoff Spectrum Slider */
+.dw-spectrum-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ef4444 0%, #facc15 50%, #ffffff 75%, #4ade80 100%);
+  position: relative;
+  margin: 0.15rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dw-spectrum-thumb {
+  position: absolute;
+  top: -5px;
+  left: 65%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #1e60db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.duo-widget-prime.urgent .dw-spectrum-thumb {
+  border-color: #b91c1c;
+}
+
+.dw-spectrum-legend {
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.7rem;
-  font-weight: 650;
-  color: #e2e8f0;
-  line-height: 1.35;
-}
-
-.hw-ai-spark {
-  color: var(--tb-amber);
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-
-/* 5. 1-Tap Fast-Path Launcher (Nike Training Club Style) */
-.hw-launcher-cta {
-  background: linear-gradient(135deg, #0284c7 0%, #00f2fe 100%);
-  color: #06090e;
-  border-radius: 18px;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 8px 20px -4px var(--tb-blue-glow);
+  font-size: 0.6rem;
+  font-weight: 850;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.hw-launcher-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 26px -4px var(--tb-blue-glow);
+/* 2 Large Glanceable Stats */
+.dw-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
 }
 
-.hw-cta-info {
+.dw-stat-item {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 }
 
-.hw-cta-title {
-  font-size: 0.82rem;
+.dw-stat-number {
+  font-size: 1.35rem;
   font-weight: 900;
-  letter-spacing: -0.01em;
-  color: #06090e;
-}
-
-.hw-cta-sub {
-  font-size: 0.65rem;
-  font-weight: 750;
-  opacity: 0.8;
-}
-
-.hw-cta-btn {
-  background: #06090e;
   color: #ffffff;
-  font-size: 0.74rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.dw-stat-caption {
+  font-size: 0.6rem;
   font-weight: 850;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* 6. Quick Actions (Perplexity Style) */
-.hw-action-pills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.hw-quick-btn {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 0.45rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.72rem;
-  font-weight: 750;
-  color: #cbd5e1;
+/* 5. Pure White Tactile Action Button (Nike Style) */
+.dw-action-btn {
+  background: #ffffff;
+  color: #1e60db;
+  border-radius: var(--w-inner-radius);
+  padding: 0.85rem 1.15rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
+  justify-content: space-between;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.2);
 }
 
-.hw-quick-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+.duo-widget-prime.urgent .dw-action-btn {
+  color: #b91c1c;
+}
+
+.dw-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.3);
+}
+
+.dw-btn-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.dw-btn-title {
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.dw-btn-sub {
+  font-size: 0.68rem;
+  font-weight: 750;
+  opacity: 0.75;
+}
+
+.dw-btn-pill {
+  background: #1e60db;
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.duo-widget-prime.urgent .dw-btn-pill {
+  background: #b91c1c;
 }
 
 /* ============================================================
-   COMPACT SIZES IN OBSIDIAN GLASS FINISH
+   ALTERNATIVE COMPACT SIZES (EXACT 1:1 DUOLINGO FROM IMAGE 1)
    ============================================================ */
 
-/* 4x2 Duolingo Streak Card */
-.hw-4x2-card {
-  background: var(--w-glass-bg);
-  backdrop-filter: var(--w-glass-backdrop);
-  border: 1px solid var(--w-border);
-  box-shadow: var(--w-shadow), var(--w-rim-light);
+/* 4x2 Duolingo Widget */
+.dw-4x2-card {
+  background: var(--w-duo-bg);
+  box-shadow: var(--w-duo-shadow);
   border-radius: var(--w-radius);
   padding: 1.25rem;
-  color: white;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 188px;
+  height: 185px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.hw-4x2-card.urgent {
-  background: linear-gradient(165deg, rgba(69, 10, 10, 0.95) 0%, rgba(20, 5, 5, 0.98) 100%);
-  box-shadow: 0 20px 45px rgba(239, 68, 68, 0.45);
+.dw-4x2-card.urgent {
+  background: linear-gradient(155deg, #400f12 0%, #7f1d1d 55%, #b91c1c 100%);
+  box-shadow: 0 20px 45px rgba(185, 28, 28, 0.5);
 }
 
-.hw-4x2-mascot {
+.dw-4x2-mascot {
   position: absolute;
-  right: 10px;
+  right: 12px;
   bottom: 0px;
-  width: 115px;
-  height: 115px;
+  width: 118px;
+  height: 118px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 }
 
-/* 2x2 Mimo / Duolingo Compact Tile */
-.hw-2x2-wrapper {
+/* 2x2 Duolingo Mascot Tile */
+.dw-2x2-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.hw-2x2-tile {
+.dw-2x2-tile {
   width: 172px;
   height: 172px;
-  background: var(--w-glass-bg);
-  backdrop-filter: var(--w-glass-backdrop);
-  border: 1px solid var(--w-border);
-  box-shadow: var(--w-shadow), var(--w-rim-light);
+  background: var(--w-duo-bg);
+  box-shadow: var(--w-duo-shadow);
   border-radius: 30px;
-  padding: 1.1rem;
-  color: white;
+  padding: 1.15rem;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.hw-2x2-tile.urgent {
-  background: linear-gradient(165deg, rgba(69, 10, 10, 0.95) 0%, rgba(20, 5, 5, 0.98) 100%);
+.dw-2x2-tile.urgent {
+  background: linear-gradient(155deg, #400f12 0%, #7f1d1d 55%, #b91c1c 100%);
 }
 
-.hw-2x2-mascot {
+.dw-2x2-mascot {
   position: absolute;
   right: -5px;
   bottom: -5px;
   width: 95px;
   height: 95px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
 }
 
 /* Bottom Android App Dock */
@@ -834,18 +751,18 @@ body {
   justify-content: center;
   font-size: 1.3rem;
   color: white;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 .dock-phone { background: linear-gradient(135deg, #10b981, #059669); }
 .dock-msg { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
 .dock-chrome { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.dock-testbook { background: linear-gradient(135deg, #0284c7, #00f2fe); font-weight: 900; }
+.dock-testbook { background: linear-gradient(135deg, #1e60db, #38bdf8); font-weight: 900; }
 
 .android-home-bar {
   width: 100px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.45);
+  background: #0f172a;
   border-radius: 2px;
   margin: 0.45rem auto 0 auto;
 }
