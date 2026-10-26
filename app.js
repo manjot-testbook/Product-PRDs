@@ -15,9 +15,12 @@ const MASCOT_ASSETS = {
 const STATE_CONFIGS = {
   morning: {
     mascot: 'happy',
+    themeClass: '',
     streakTitle: '🔥 6 days',
     streakSub: 'Get started early!',
     score: '142 / 200',
+    fillPct: '71%',
+    cutoffTag: '+4 ABOVE CUTOFF ✓',
     acc: '74.2%',
     mocks: '28',
     actionTitle: 'RRB Group D Mock 14',
@@ -25,37 +28,47 @@ const STATE_CONFIGS = {
     actionBtn: 'START ▶',
     isUrgent: false,
     days: [
+      { letter: 'M', status: 'done' },
       { letter: 'T', status: 'done' },
-      { letter: 'F', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'M', status: 'today' }
+      { letter: 'W', status: 'done' },
+      { letter: 'T', status: 'done' },
+      { letter: 'F', status: 'today' },
+      { letter: 'S', status: 'upcoming' },
+      { letter: 'S', status: 'upcoming' }
     ]
   },
   workout: {
     mascot: 'workout',
+    themeClass: 'workout',
     streakTitle: '🔥 6 days',
     streakSub: 'Mock 14 secured today!',
     score: '151 / 200',
+    fillPct: '75.5%',
+    cutoffTag: '+13 ABOVE CUTOFF ✓',
     acc: '81.0%',
     mocks: '29',
-    actionTitle: 'Algebra 10-Q Booster',
-    actionSub: '15 min · 20 Qs · Speed Drill',
+    actionTitle: 'Algebra 10-Q Speed Drill',
+    actionSub: '15 min · 20 Qs · Instant feedback',
     actionBtn: 'PRACTICE ▶',
     isUrgent: false,
     days: [
+      { letter: 'M', status: 'done' },
+      { letter: 'T', status: 'done' },
+      { letter: 'W', status: 'done' },
       { letter: 'T', status: 'done' },
       { letter: 'F', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'M', status: 'done' }
+      { letter: 'S', status: 'upcoming' },
+      { letter: 'S', status: 'upcoming' }
     ]
   },
   urgent: {
     mascot: 'urgent',
-    streakTitle: '🔥 6 days',
-    streakSub: 'Save your streak! (Resets at 12)',
+    themeClass: 'urgent',
+    streakTitle: '⚡ 6 days',
+    streakSub: 'Save your streak! 3h left',
     score: '142 / 200',
+    fillPct: '71%',
+    cutoffTag: 'AT RISK · 3H LEFT ⚡',
     acc: '74.2%',
     mocks: '28',
     actionTitle: 'Daily Railway Speed Quiz',
@@ -63,18 +76,23 @@ const STATE_CONFIGS = {
     actionBtn: 'SAVE STREAK ⚡',
     isUrgent: true,
     days: [
+      { letter: 'M', status: 'done' },
       { letter: 'T', status: 'done' },
-      { letter: 'F', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'M', status: 'today' }
+      { letter: 'W', status: 'done' },
+      { letter: 'T', status: 'done' },
+      { letter: 'F', status: 'today' },
+      { letter: 'S', status: 'upcoming' },
+      { letter: 'S', status: 'upcoming' }
     ]
   },
   celebration: {
     mascot: 'celebration',
+    themeClass: 'celebration',
     streakTitle: '🏆 7 days',
     streakSub: 'Top 100 Consistency Unlocked!',
     score: '164 / 200',
+    fillPct: '82%',
+    cutoffTag: '+26 ABOVE CUTOFF 🏆',
     acc: '88.5%',
     mocks: '30',
     actionTitle: 'Testbook Podium Leaderboard',
@@ -82,18 +100,23 @@ const STATE_CONFIGS = {
     actionBtn: 'PODIUM 🏆',
     isUrgent: false,
     days: [
+      { letter: 'M', status: 'done' },
+      { letter: 'T', status: 'done' },
+      { letter: 'W', status: 'done' },
       { letter: 'T', status: 'done' },
       { letter: 'F', status: 'done' },
       { letter: 'S', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'M', status: 'done' }
+      { letter: 'S', status: 'done' }
     ]
   },
   sleepy: {
     mascot: 'sleepy',
+    themeClass: 'sleepy',
     streakTitle: '🌙 6 days',
     streakSub: 'Streak secured · Rest well',
     score: '151 / 200',
+    fillPct: '75.5%',
+    cutoffTag: 'DAY 6 SECURED ✓',
     acc: '81.0%',
     mocks: '29',
     actionTitle: 'Tomorrow: Reasoning Mock 15',
@@ -101,11 +124,13 @@ const STATE_CONFIGS = {
     actionBtn: 'REMIND ⏰',
     isUrgent: false,
     days: [
+      { letter: 'M', status: 'done' },
+      { letter: 'T', status: 'done' },
+      { letter: 'W', status: 'done' },
       { letter: 'T', status: 'done' },
       { letter: 'F', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'S', status: 'done' },
-      { letter: 'M', status: 'done' }
+      { letter: 'S', status: 'upcoming' },
+      { letter: 'S', status: 'upcoming' }
     ]
   }
 };
@@ -129,17 +154,17 @@ function renderWidget() {
   if (currentSize === '4x5') {
     // 4x5 Prime Cockpit
     mount.innerHTML = `
-      <div class="duo-widget-prime ${cfg.isUrgent ? 'urgent' : ''}" id="primeWidget">
+      <div class="duo-widget-prime ${cfg.themeClass}" id="primeWidget">
         
-        <!-- 1. Header Row -->
+        <!-- 1. Header Row (Exam on the Right, Live Sync Removed) -->
         <div class="dw-header">
+          <div class="dw-brand-tag">
+            <span class="dw-brand-dot"></span>
+            <span>testbook</span>
+          </div>
           <div class="dw-exam-pill" id="examPill" title="Click to toggle exam goal">
-            <span class="dw-exam-dot"></span>
             <span id="examTitle">RRB GROUP D</span>
             <span style="font-size:0.55rem; opacity:0.8;">▾</span>
-          </div>
-          <div class="dw-live-sync">
-            <span></span> LIVE SYNC
           </div>
         </div>
 
@@ -154,7 +179,7 @@ function renderWidget() {
           </div>
         </div>
 
-        <!-- 3. Days of the Week Row (Direct 1:1 Match to Duolingo Image 1) -->
+        <!-- 3. Full Monday to Sunday Week (7 Days) -->
         <div class="dw-days-row">
           ${cfg.days.map(d => `
             <div class="dw-day-column ${d.status}">
@@ -164,21 +189,25 @@ function renderWidget() {
           `).join('')}
         </div>
 
-        <!-- 4. Bevel Quantified Readiness Pod -->
+        <!-- 4. Bevel Quantified Readiness Pod (Frosted Glass, No Skeuomorphic Rainbows) -->
         <div class="dw-readiness-pod" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
           <div class="dw-pod-header">
             <span class="dw-pod-label">EXAM READINESS</span>
             <span class="dw-score-val">${cfg.score}</span>
           </div>
 
-          <div class="dw-spectrum-track">
-            <div class="dw-spectrum-thumb" style="left: ${cfg.score.startsWith('16') ? '78%' : '65%'};"></div>
+          <!-- Clean Dual-Tone Cutoff Track -->
+          <div class="dw-cutoff-track-wrapper">
+            <div class="dw-cutoff-track-bg">
+              <div class="dw-cutoff-track-fill" style="width: ${cfg.fillPct};"></div>
+              <div class="dw-cutoff-notch"></div>
+            </div>
           </div>
 
-          <div class="dw-spectrum-legend">
-            <span>DANGER (110)</span>
-            <span style="font-weight:900;">CUTOFF: 138</span>
-            <span>SAFE (155+)</span>
+          <div class="dw-cutoff-meta-row">
+            <span>${cfg.score.split('/')[0].trim()} SCORE</span>
+            <span style="color:#ffffff; font-weight:900;">CUTOFF: 138</span>
+            <span class="dw-cutoff-tag">${cfg.cutoffTag}</span>
           </div>
 
           <div class="dw-stats-row">
@@ -193,13 +222,13 @@ function renderWidget() {
           </div>
         </div>
 
-        <!-- 5. Pure White Tactile Action Button -->
-        <div class="dw-action-btn" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly from home screen...')">
-          <div class="dw-btn-info">
-            <div class="dw-btn-title">${cfg.actionTitle}</div>
-            <div class="dw-btn-sub">${cfg.actionSub}</div>
+        <!-- 5. Integrated Frosted Action Pill (Belongs to the Card! No Disjointed White Cutout) -->
+        <div class="dw-action-pill-row" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly from home screen...')">
+          <div class="dw-action-text-group">
+            <div class="dw-action-title">${cfg.actionTitle}</div>
+            <div class="dw-action-sub">${cfg.actionSub}</div>
           </div>
-          <div class="dw-btn-pill">${cfg.actionBtn}</div>
+          <div class="dw-pill-button">${cfg.actionBtn}</div>
         </div>
 
       </div>
@@ -208,7 +237,7 @@ function renderWidget() {
   } else if (currentSize === '4x2-duo') {
     // 4x2 Duolingo Streak Card (Exact 1:1 Image 1)
     mount.innerHTML = `
-      <div class="dw-4x2-card ${cfg.isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+      <div class="dw-4x2-card ${cfg.themeClass}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
         <div>
           <div style="font-size:2.1rem; font-weight:900; letter-spacing:-0.03em; line-height:1;">
             ${cfg.streakTitle}
@@ -218,11 +247,11 @@ function renderWidget() {
           </div>
         </div>
         <img src="${mascotSrc}" class="dw-4x2-mascot" alt="Mascot" />
-        <div class="dw-days-row" style="width:60%; z-index:2; margin:0;">
+        <div class="dw-days-row" style="width:72%; z-index:2; margin:0;">
           ${cfg.days.map(d => `
             <div class="dw-day-column ${d.status}">
-              <span class="dw-day-letter" style="font-size:0.6rem;">${d.letter}</span>
-              <div class="dw-day-capsule" style="width:26px; height:26px; font-size:0.75rem;">
+              <span class="dw-day-letter" style="font-size:0.58rem;">${d.letter}</span>
+              <div class="dw-day-capsule" style="width:24px; height:24px; font-size:0.72rem;">
                 ${d.status === 'done' ? '✓' : (d.status === 'today' ? '●' : '')}
               </div>
             </div>
@@ -234,7 +263,7 @@ function renderWidget() {
     // 2x2 Duolingo Mascot Tile (Exact 1:1 Image 1)
     mount.innerHTML = `
       <div class="dw-2x2-wrapper">
-        <div class="dw-2x2-tile ${cfg.isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+        <div class="dw-2x2-tile ${cfg.themeClass}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
           <div>
             <div style="font-size:1.85rem; font-weight:900; line-height:1;">${cfg.streakTitle}</div>
             <div style="font-size:0.68rem; font-weight:750; opacity:0.9; margin-top:0.2rem;">${cfg.streakSub}</div>
