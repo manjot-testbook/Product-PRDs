@@ -1,9 +1,8 @@
 /* ============================================================
-   Testbook Widget Interactive State & Analytics Engine
-   Powers the 4x5 Prime Flagship Widget & Multi-State Simulator
+   Testbook Android Home Screen Widget Interactive Engine
+   Airy, Lightweight, High-Fidelity Widget Simulator
    ============================================================ */
 
-// Mascot Assets generated via Gemini-3.1-Flash-Image
 const MASCOT_ASSETS = {
   default: 'assets/mascot/mascot_default.png',
   happy: 'assets/mascot/mascot_happy.png',
@@ -13,306 +12,291 @@ const MASCOT_ASSETS = {
   sleepy: 'assets/mascot/mascot_sleepy.png'
 };
 
-// Analytics Data Models
-const ANALYTICS_DATA = {
-  attempts: {
-    title: 'Attempts',
-    svgPath: 'M 10 55 L 60 48 L 115 52 L 170 38 L 225 10 L 280 44 L 335 48',
-    areaPath: 'M 10 55 L 60 48 L 115 52 L 170 38 L 225 10 L 280 44 L 335 48 L 335 70 L 10 70 Z',
-    points: [
-      { x: 10, y: 55, val: '1' },
-      { x: 60, y: 48, val: '3' },
-      { x: 115, y: 52, val: '1' },
-      { x: 170, y: 38, val: '4' },
-      { x: 225, y: 10, val: '12' },
-      { x: 280, y: 44, val: '2' },
-      { x: 335, y: 48, val: '1' }
-    ],
-    dates: ['Jun 29', 'Oct 15', 'May 2', 'Sep 20', 'Jan 22', 'Sep 23', 'Sep 25'],
-    metric1: { val: '4%', label: 'Your Avg Score' },
-    metric2: { val: '28', label: 'Your Tests' },
-    metric3: { val: '4.5h', label: 'Your Study Time' }
-  },
-  accuracy: {
-    title: 'Accuracy',
-    svgPath: 'M 10 42 L 60 38 L 115 32 L 170 28 L 225 18 L 280 14 L 335 12',
-    areaPath: 'M 10 42 L 60 38 L 115 32 L 170 28 L 225 18 L 280 14 L 335 12 L 335 70 L 10 70 Z',
-    points: [
-      { x: 10, y: 42, val: '58%' },
-      { x: 60, y: 38, val: '62%' },
-      { x: 115, y: 32, val: '67%' },
-      { x: 170, y: 28, val: '71%' },
-      { x: 225, y: 18, val: '78%' },
-      { x: 280, y: 14, val: '82%' },
-      { x: 335, y: 12, val: '86%' }
-    ],
-    dates: ['Mock 1', 'Mock 2', 'Mock 3', 'Mock 4', 'Mock 5', 'Mock 6', 'Mock 7'],
-    metric1: { val: '74.2%', label: 'Avg Accuracy' },
-    metric2: { val: '91.8%', label: 'AIR Percentile' },
-    metric3: { val: '+12', label: 'Score Delta' }
-  },
-  time: {
-    title: 'Study Time',
-    svgPath: 'M 10 50 L 60 40 L 115 30 L 170 45 L 225 20 L 280 25 L 335 15',
-    areaPath: 'M 10 50 L 60 40 L 115 30 L 170 45 L 225 20 L 280 25 L 335 15 L 335 70 L 10 70 Z',
-    points: [
-      { x: 10, y: 50, val: '1.2h' },
-      { x: 60, y: 40, val: '2.5h' },
-      { x: 115, y: 30, val: '3.8h' },
-      { x: 170, y: 45, val: '2.1h' },
-      { x: 225, y: 20, val: '5.2h' },
-      { x: 280, y: 25, val: '4.8h' },
-      { x: 335, y: 15, val: '6.4h' }
-    ],
-    dates: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    metric1: { val: '26.0h', label: 'This Month' },
-    metric2: { val: '3.7h', label: 'Daily Avg' },
-    metric3: { val: 'Top 5%', label: 'Effort Rank' }
-  }
-};
-
-// Widget State Presets
-const STATE_PRESETS = {
+const STATE_CONFIGS = {
   morning: {
-    title: 'Morning Greeting',
     mascot: 'happy',
-    greeting: 'Good Morning,',
-    userName: 'Santhosh',
-    streakTarget: '3 / 5 Tests Attempted',
-    streakBadge: '🔥 Day 6 · Active',
-    aiNudge: '“General Science me Physics strong hai, Chemistry numericals leak hai. 10 Qs attempt karo.”',
-    upNextTitle: 'RRB Group D Full Mock 14',
-    upNextSub: '90 min · 100 Qs · Full Length',
-    upNextBtn: 'Start Mock ▶',
-    widgetClass: 'state-normal',
-    pills: ['done', 'done', 'done', 'done', 'today', 'upcoming', 'upcoming']
+    greeting: 'Good morning, Santhosh',
+    streak: '🔥 6 Days',
+    sub: 'Goal: 3 / 5 mocks this week',
+    aiCopy: '“Chemistry numericals me 6 marks leak ho rahe hain. 10 Qs ka 5-min drill solve karo.”',
+    actionTitle: 'RRB Group D Full Mock 14',
+    actionSub: '90 min · 100 Qs · Full Length',
+    actionBtn: 'Start ▶',
+    isUrgent: false
   },
   workout: {
-    title: 'Study Workout (Completed Today)',
     mascot: 'workout',
-    greeting: 'Great Momentum,',
-    userName: 'Santhosh',
-    streakTarget: '4 / 5 Tests Attempted',
-    streakBadge: '🔥 Day 6 · Secured',
-    aiNudge: '“Mock 14 submitted: 82% Accuracy. Speed on Reasoning improved by 4.2 sec/question.”',
-    upNextTitle: 'Weak Area: Algebra PYQ Booster',
-    upNextSub: '15 min · 20 Qs · Sectional Speed Test',
-    upNextBtn: 'Practice Now ▶',
-    widgetClass: 'state-workout',
-    pills: ['done', 'done', 'done', 'done', 'done', 'upcoming', 'upcoming']
+    greeting: 'Keep it going, Santhosh',
+    streak: '🔥 6 Days',
+    sub: 'Mock 14 submitted today · Secured!',
+    aiCopy: '“Reasoning me 100% accuracy recorded. Speed 4.2s per question improve hui.”',
+    actionTitle: 'Algebra 10-Q Speed Booster',
+    actionSub: '5 min · 10 Qs · Instant feedback',
+    actionBtn: 'Practice ▶',
+    isUrgent: false
   },
   urgent: {
-    title: 'Evening Urgency (At Risk > 8 PM)',
     mascot: 'urgent',
-    greeting: 'Streak At Risk,',
-    userName: 'Santhosh',
-    streakTarget: '3 / 5 Tests Attempted',
-    streakBadge: '⚡ Midnight Reset · 3h Left',
-    aiNudge: '“Sirf 5 minute ka Daily Quiz solve karo — Day 6 streak reset hone se bach jayega!”',
-    upNextTitle: 'Daily Railway Speed Quiz',
-    upNextSub: '5 min · 10 Qs · Instant Result',
-    upNextBtn: 'Save Streak ⚡',
-    widgetClass: 'state-urgent',
-    pills: ['done', 'done', 'done', 'done', 'today', 'upcoming', 'upcoming']
+    greeting: 'Streak at risk!',
+    streak: '🔥 6 Days',
+    sub: 'Resets at midnight · 3h left',
+    aiCopy: '“Sirf 5 min ka Daily Quiz solve karo — Day 6 streak reset hone se bach jayegi!”',
+    actionTitle: 'Daily Railway Speed Quiz',
+    actionSub: '5 min · 10 Qs · Save Streak',
+    actionBtn: 'Save Streak ⚡',
+    isUrgent: true
   },
   celebration: {
-    title: 'Milestone Unlocked (Badge Earned)',
     mascot: 'celebration',
-    greeting: 'Badge Unlocked!',
-    userName: 'Top 100 Achiever',
-    streakTarget: '5 / 5 Tests Completed',
-    streakBadge: '🏆 Top 100 Consistency',
-    aiNudge: '“Congratulations! Weekly target 100% complete. You outperformed 92% aspirants this week.”',
-    upNextTitle: 'Testbook Podium Leaderboard',
-    upNextSub: 'Check your State & All-India Rank',
-    upNextBtn: 'View Podium 🏆',
-    widgetClass: 'state-celebration',
-    pills: ['done', 'done', 'done', 'done', 'done', 'done', 'done']
+    greeting: 'Milestone Unlocked!',
+    streak: '🏆 7 Days',
+    sub: 'Weekly target 100% completed!',
+    aiCopy: '“Awesome! You unlocked the Top 100 consistency badge. Outperformed 92% students.”',
+    actionTitle: 'Testbook Podium Leaderboard',
+    actionSub: 'Check your State & All-India Rank',
+    actionBtn: 'Podium 🏆',
+    isUrgent: false
   },
   sleepy: {
-    title: 'Night Rest (Streak Secured)',
     mascot: 'sleepy',
-    greeting: 'Good Night,',
-    userName: 'Santhosh',
-    streakTarget: 'Day 6 Secured ✓',
-    streakBadge: '🌙 Rest & Recharge',
-    aiNudge: '“Aaj ka study goal pura hua. Kal subah Reasoning Mock 15 se fresh start karenge.”',
-    upNextTitle: 'Tomorrow’s Target: Reasoning Mock 15',
-    upNextSub: 'Scheduled for 8:30 AM tomorrow',
-    upNextBtn: 'Set Reminder ⏰',
-    widgetClass: 'state-normal',
-    pills: ['done', 'done', 'done', 'done', 'done', 'upcoming', 'upcoming']
+    greeting: 'Good night, Santhosh',
+    streak: '🌙 Day 6 Secured',
+    sub: 'Study goal met for today · Rest well',
+    aiCopy: '“Aaj ka target complete hua. Kal subah Reasoning Mock 15 se fresh start karenge.”',
+    actionTitle: 'Tomorrow: Reasoning Mock 15',
+    actionSub: 'Scheduled for 8:30 AM tomorrow',
+    actionBtn: 'Remind ⏰',
+    isUrgent: false
   }
 };
 
-let currentTab = 'attempts';
+let currentSize = '4x5';
 let currentState = 'morning';
+let currentMascot = 'happy';
 let currentTheme = 'light';
-let currentExam = 'RRB Group D';
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  renderState(currentState);
-  renderAnalytics(currentTab);
-  setupEventListeners();
+  renderWidget();
+  setupListeners();
 });
 
-function renderState(stateKey) {
-  const state = STATE_PRESETS[stateKey];
-  if (!state) return;
-  currentState = stateKey;
+function renderWidget() {
+  const slot = document.getElementById('widgetSlot');
+  if (!slot) return;
+  const cfg = STATE_CONFIGS[currentState];
+  const mascotSrc = MASCOT_ASSETS[currentMascot] || MASCOT_ASSETS[cfg.mascot];
 
-  // Mascot Image update
-  const mascotImg = document.getElementById('mascotImg');
-  if (mascotImg) {
-    mascotImg.src = MASCOT_ASSETS[state.mascot] || MASCOT_ASSETS.default;
+  if (currentSize === '4x5') {
+    // Render Airy 4x5 Prime Cockpit
+    slot.innerHTML = `
+      <div class="widget-prime" id="primeWidget">
+        
+        <!-- 1. Header Row -->
+        <div class="w-header">
+          <div class="w-exam-tag" id="examTag">
+            <span class="w-exam-dot"></span>
+            <span id="examText">RRB Group D</span>
+            <span style="font-size:0.6rem; color:var(--w-muted);">▾</span>
+          </div>
+          <span class="w-live-badge">Updated 5m ago</span>
+        </div>
+
+        <!-- 2. Hero Mascot & Streak -->
+        <div class="w-hero-zone">
+          <div class="w-hero-copy">
+            <span class="w-hero-greeting">${cfg.greeting}</span>
+            <span class="w-hero-streak">${cfg.streak}</span>
+            <span class="w-hero-sub">${cfg.sub}</span>
+          </div>
+          <div class="w-mascot-frame">
+            <img src="${mascotSrc}" class="w-mascot-art" alt="Testbook Buddy" />
+          </div>
+        </div>
+
+        <!-- 3. 5-Day Habit Circles -->
+        <div class="w-streak-pills">
+          <div class="w-pill-item done"><span class="w-pill-day">THU</span><span class="w-pill-circle">✓</span></div>
+          <div class="w-pill-item done"><span class="w-pill-day">FRI</span><span class="w-pill-circle">✓</span></div>
+          <div class="w-pill-item done"><span class="w-pill-day">SAT</span><span class="w-pill-circle">✓</span></div>
+          <div class="w-pill-item done"><span class="w-pill-day">SUN</span><span class="w-pill-circle">✓</span></div>
+          <div class="w-pill-item today"><span class="w-pill-day">TODAY</span><span class="w-pill-circle">●</span></div>
+          <div class="w-pill-item upcoming"><span class="w-pill-day">TUE</span><span class="w-pill-circle"></span></div>
+          <div class="w-pill-item upcoming"><span class="w-pill-day">WED</span><span class="w-pill-circle"></span></div>
+        </div>
+
+        <!-- 4. Bevel-Style Score Spectrum & Stats -->
+        <div class="w-data-zone" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
+          <div class="w-gauge-row">
+            <span class="w-gauge-lbl">Projected Score</span>
+            <span class="w-gauge-val">142 / 200</span>
+          </div>
+          
+          <div class="w-spectrum-track">
+            <div class="w-spectrum-thumb"></div>
+          </div>
+          
+          <div class="w-spectrum-labels">
+            <span>Danger (110)</span>
+            <span style="color:#0284c7; font-weight:850;">Cutoff: 138</span>
+            <span style="color:#10b981;">Safe (155+)</span>
+          </div>
+
+          <div class="w-stats-pair">
+            <div class="w-stat-col">
+              <span class="w-stat-num">74.2%</span>
+              <span class="w-stat-caption">Avg Accuracy (↑ 3%)</span>
+            </div>
+            <div class="w-stat-col">
+              <span class="w-stat-num">28 Mocks</span>
+              <span class="w-stat-caption">Total Attempted</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Action Row -->
+        <div class="w-action-row" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly...')">
+          <div class="w-action-text">
+            <div class="w-action-title">${cfg.actionTitle}</div>
+            <div class="w-action-sub">${cfg.actionSub}</div>
+          </div>
+          <div class="w-action-btn-pill">${cfg.actionBtn}</div>
+        </div>
+
+        <!-- 6. Ahead-Style AI Card -->
+        <div class="w-ai-card">
+          <span>⚡</span>
+          <span>${cfg.aiCopy}</span>
+        </div>
+
+      </div>
+    `;
+  } else if (currentSize === '4x2-duo') {
+    // 4x2 Duolingo-style Streak Widget
+    const isUrgent = cfg.isUrgent;
+    slot.innerHTML = `
+      <div class="widget-4x2 ${isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+        <div class="widget-4x2-top">
+          <div>
+            <div class="w-4x2-streak">${cfg.streak}</div>
+            <div class="w-4x2-sub">${cfg.sub}</div>
+          </div>
+        </div>
+        <img src="${mascotSrc}" class="w-4x2-mascot" alt="Mascot" />
+        <div class="w-4x2-pills">
+          <div class="w-4x2-pill done">✓</div>
+          <div class="w-4x2-pill done">✓</div>
+          <div class="w-4x2-pill done">✓</div>
+          <div class="w-4x2-pill done">✓</div>
+          <div class="w-4x2-pill">●</div>
+        </div>
+      </div>
+    `;
+  } else if (currentSize === '2x2-duo') {
+    // 2x2 Mascot Streak Tile
+    slot.innerHTML = `
+      <div class="widget-2x2-wrapper">
+        <div class="widget-2x2 ${cfg.isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+          <div>
+            <div class="w-2x2-streak">${cfg.streak}</div>
+            <div class="w-2x2-sub">${cfg.isUrgent ? 'Save streak!' : 'Keep it up!'}</div>
+          </div>
+          <img src="${mascotSrc}" class="w-2x2-mascot" alt="Mascot" />
+        </div>
+      </div>
+    `;
+  } else if (currentSize === 'bevel') {
+    // 4x2 Bevel Readiness Widget
+    slot.innerHTML = `
+      <div class="widget-prime" style="padding:1rem; gap:0.75rem;" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.7rem; font-weight:850; text-transform:uppercase; color:var(--w-muted);">Exam Readiness Spectrum</span>
+          <span style="font-size:0.8rem; font-weight:900; color:#0284c7;">Score: 142 / 200</span>
+        </div>
+        <div class="w-spectrum-track" style="margin:0.2rem 0;">
+          <div class="w-spectrum-thumb" style="left:64%;"></div>
+        </div>
+        <div class="w-spectrum-labels">
+          <span>Danger (110)</span>
+          <span style="color:#0284c7; font-weight:850;">Cutoff: 138</span>
+          <span style="color:#10b981;">Safe (155+)</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; text-align:center; padding-top:0.4rem; border-top:1px solid rgba(0,0,0,0.05);">
+          <div>
+            <div style="font-size:1.15rem; font-weight:900; color:#0284c7;">74%</div>
+            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Accuracy</div>
+          </div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:900; color:#f59e0b;">35/50</div>
+            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Daily Qs</div>
+          </div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:900; color:#10b981;">91.8</div>
+            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Percentile</div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (currentSize === 'ahead') {
+    // 4x2 Ahead AI Mindset Card
+    slot.innerHTML = `
+      <div style="background:#fef08a; border-radius:28px; padding:1.25rem; color:#713f12; display:flex; flex-direction:column; justify-content:space-between; height:185px; box-shadow:0 12px 30px rgba(234, 179, 8, 0.25); cursor:pointer;" onclick="alert('Opening Samadhan AI (SCR_07)...')">
+        <div style="font-size:0.65rem; font-weight:850; text-transform:uppercase; letter-spacing:0.05em; opacity:0.8;">
+          AAJ KA FOCUS · TESTBOOK AI
+        </div>
+        <div style="font-size:0.95rem; font-weight:750; line-height:1.45;">
+          “Chemistry numericals me 6 marks leak ho rahe hain. Formulas revise karne ke baad 10 Qs ka mini drill solve karo — cutoff pakka nikal jayega.”
+        </div>
+        <div style="font-size:0.72rem; font-weight:800; display:flex; align-items:center; gap:0.35rem; color:#854d0e;">
+          Practice 10 Questions Now ➔
+        </div>
+      </div>
+    `;
   }
-
-  // Text fields
-  document.getElementById('greetingTitle').innerHTML = `${state.greeting} <span>${state.userName}</span>`;
-  document.getElementById('streakTarget').textContent = state.streakTarget;
-  document.getElementById('streakBadge').textContent = state.streakBadge;
-  document.getElementById('aiNudgeText').textContent = state.aiNudge;
-  document.getElementById('upNextTitle').textContent = state.upNextTitle;
-  document.getElementById('upNextSub').textContent = state.upNextSub;
-  document.getElementById('upNextBtn').textContent = state.upNextBtn;
-
-  // Widget container styling
-  const widgetEl = document.getElementById('primeWidget');
-  if (widgetEl) {
-    widgetEl.className = 'tb-widget-prime ' + state.widgetClass;
-  }
-
-  // 7-day pills update
-  const daysContainer = document.getElementById('daysPills');
-  if (daysContainer) {
-    const letters = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    daysContainer.innerHTML = '';
-    state.pills.forEach((pStatus, idx) => {
-      const pill = document.createElement('div');
-      pill.className = `w-day-pill ${pStatus}`;
-      const checkIcon = pStatus === 'done' ? '✓' : (pStatus === 'today' ? '●' : '○');
-      pill.innerHTML = `
-        <span class="w-day-letter">${letters[idx]}</span>
-        <span class="w-day-check">${checkIcon}</span>
-      `;
-      daysContainer.appendChild(pill);
-    });
-  }
-
-  // Update active state in sidebar
-  document.querySelectorAll('.state-pill-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.state === stateKey);
-  });
 }
 
-function renderAnalytics(tabKey) {
-  const data = ANALYTICS_DATA[tabKey];
-  if (!data) return;
-  currentTab = tabKey;
-
-  // SVG Chart path update
-  const chartLine = document.getElementById('chartLine');
-  const chartArea = document.getElementById('chartArea');
-  const chartPoints = document.getElementById('chartPoints');
-  const chartDates = document.getElementById('chartDates');
-
-  if (chartLine) chartLine.setAttribute('d', data.svgPath);
-  if (chartArea) chartArea.setAttribute('d', data.areaPath);
-
-  if (chartPoints) {
-    chartPoints.innerHTML = '';
-    data.points.forEach(pt => {
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', pt.x);
-      circle.setAttribute('cy', pt.y);
-      circle.setAttribute('class', 'w-chart-point');
-      chartPoints.appendChild(circle);
-    });
-  }
-
-  if (chartDates) {
-    chartDates.innerHTML = '';
-    data.dates.forEach(d => {
-      const span = document.createElement('span');
-      span.textContent = d;
-      chartDates.appendChild(span);
-    });
-  }
-
-  // Metrics Row
-  document.getElementById('metricVal1').textContent = data.metric1.val;
-  document.getElementById('metricLbl1').textContent = data.metric1.label;
-
-  document.getElementById('metricVal2').textContent = data.metric2.val;
-  document.getElementById('metricLbl2').textContent = data.metric2.label;
-
-  document.getElementById('metricVal3').textContent = data.metric3.val;
-  document.getElementById('metricLbl3').textContent = data.metric3.label;
-
-  // Active tab button styling
-  document.querySelectorAll('.w-tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.tab === tabKey);
-  });
-}
-
-function setupEventListeners() {
-  // State Buttons in sidebar
-  document.querySelectorAll('.state-pill-btn').forEach(btn => {
+function setupListeners() {
+  // Size Chips
+  document.querySelectorAll('.size-chip').forEach(btn => {
     btn.addEventListener('click', () => {
-      renderState(btn.dataset.state);
+      currentSize = btn.dataset.size;
+      document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderWidget();
     });
   });
 
-  // Mascot Card Items in sidebar
-  document.querySelectorAll('.mascot-card-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const mascotKey = item.dataset.mascot;
-      const mascotImg = document.getElementById('mascotImg');
-      if (mascotImg && MASCOT_ASSETS[mascotKey]) {
-        mascotImg.src = MASCOT_ASSETS[mascotKey];
-      }
-      document.querySelectorAll('.mascot-card-item').forEach(c => c.classList.remove('selected'));
-      item.classList.add('selected');
-    });
-  });
-
-  // Analytics Tabs inside widget
-  document.querySelectorAll('.w-tab-btn').forEach(btn => {
+  // State Chips
+  document.querySelectorAll('.state-chip').forEach(btn => {
     btn.addEventListener('click', () => {
-      renderAnalytics(btn.dataset.tab);
+      currentState = btn.dataset.state;
+      currentMascot = STATE_CONFIGS[currentState].mascot;
+      document.querySelectorAll('.state-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.mascot-chip').forEach(b => {
+        b.classList.toggle('active', b.dataset.mascot === currentMascot);
+      });
+      renderWidget();
     });
   });
 
-  // Theme Toggles
-  document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+  // Mascot Chips
+  document.querySelectorAll('.mascot-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMascot = btn.dataset.mascot;
+      document.querySelectorAll('.mascot-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderWidget();
+    });
+  });
+
+  // Theme Chips
+  document.querySelectorAll('.theme-chip').forEach(btn => {
     btn.addEventListener('click', () => {
       currentTheme = btn.dataset.theme;
-      document.getElementById('primeWidget').setAttribute('data-widget-theme', currentTheme);
-      document.querySelectorAll('.theme-pill-btn').forEach(b => b.classList.remove('active'));
+      document.body.setAttribute('data-theme', currentTheme);
+      document.querySelectorAll('.theme-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      renderWidget();
     });
   });
-
-  // Exam Selector
-  const examBadge = document.getElementById('examBadge');
-  if (examBadge) {
-    const exams = ['RRB Group D', 'SSC CGL 2026', 'RRB NTPC', 'SBI PO / Clerk'];
-    let examIdx = 0;
-    examBadge.addEventListener('click', () => {
-      examIdx = (examIdx + 1) % exams.length;
-      document.getElementById('examName').textContent = exams[examIdx];
-    });
-  }
-
-  // Doubt Bar Prompt Simulator
-  const doubtBar = document.getElementById('doubtBar');
-  if (doubtBar) {
-    doubtBar.addEventListener('click', () => {
-      const q = prompt('Ask Samadhan AI anything (e.g. "Explain Lenz Law in Hindi" or "Solve Quant PYQ"):', 'Railway cut-off marks for General Science?');
-      if (q) {
-        alert(`🤖 Samadhan AI (Connecting to Testbook Engine)...\n\nAnalyzing query: "${q}"\n\nDirecting to SAMADHAN_AI_DOUBT_SOLVER_SCREEN (SCR_07)...`);
-      }
-    });
-  }
 }
