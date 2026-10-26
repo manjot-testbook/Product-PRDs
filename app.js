@@ -1,6 +1,7 @@
 /* ============================================================
    Testbook Android Home Screen Widget Interactive Engine
    Duolingo & Bevel Inspired Premium Light Edition
+   Direct Match to User Preferred Layout (Image 1)
    ============================================================ */
 
 const MASCOT_ASSETS = {
@@ -19,13 +20,12 @@ const STATE_CONFIGS = {
     streakTitle: '🔥 6 days',
     streakSub: 'Get started early!',
     score: '142 / 200',
-    fillPct: '71%',
-    cutoffTag: '+4 ABOVE CUTOFF ✓',
+    thumbLeft: '65%',
     acc: '74.2%',
     mocks: '28',
-    actionTitle: 'RRB Group D Mock 14',
-    actionSub: '90 min · 100 Qs · Full Length',
-    actionBtn: 'START ▶',
+    cardTitle: 'RRB Group D Mock 14',
+    cardSub: '90 min · 100 Qs · Full Length',
+    cardBtn: 'START ▶',
     isUrgent: false,
     days: [
       { letter: 'M', status: 'done' },
@@ -43,13 +43,12 @@ const STATE_CONFIGS = {
     streakTitle: '🔥 6 days',
     streakSub: 'Mock 14 secured today!',
     score: '151 / 200',
-    fillPct: '75.5%',
-    cutoffTag: '+13 ABOVE CUTOFF ✓',
+    thumbLeft: '75%',
     acc: '81.0%',
     mocks: '29',
-    actionTitle: 'Algebra 10-Q Speed Drill',
-    actionSub: '15 min · 20 Qs · Instant feedback',
-    actionBtn: 'PRACTICE ▶',
+    cardTitle: 'Algebra 10-Q Speed Drill',
+    cardSub: '15 min · 20 Qs · Instant feedback',
+    cardBtn: 'PRACTICE ▶',
     isUrgent: false,
     days: [
       { letter: 'M', status: 'done' },
@@ -65,15 +64,14 @@ const STATE_CONFIGS = {
     mascot: 'urgent',
     themeClass: 'urgent',
     streakTitle: '⚡ 6 days',
-    streakSub: 'Save your streak! 3h left',
+    streakSub: 'Save your streak! (Resets at 12)',
     score: '142 / 200',
-    fillPct: '71%',
-    cutoffTag: 'AT RISK · 3H LEFT ⚡',
+    thumbLeft: '65%',
     acc: '74.2%',
     mocks: '28',
-    actionTitle: 'Daily Railway Speed Quiz',
-    actionSub: '5 min · 10 Qs · Save Streak',
-    actionBtn: 'SAVE STREAK ⚡',
+    cardTitle: 'Daily Railway Speed Quiz',
+    cardSub: '5 min · 10 Qs · Save Streak',
+    cardBtn: 'SAVE STREAK ⚡',
     isUrgent: true,
     days: [
       { letter: 'M', status: 'done' },
@@ -91,13 +89,12 @@ const STATE_CONFIGS = {
     streakTitle: '🏆 7 days',
     streakSub: 'Top 100 Consistency Unlocked!',
     score: '164 / 200',
-    fillPct: '82%',
-    cutoffTag: '+26 ABOVE CUTOFF 🏆',
+    thumbLeft: '82%',
     acc: '88.5%',
     mocks: '30',
-    actionTitle: 'Testbook Podium Leaderboard',
-    actionSub: 'Check your State & All-India Rank',
-    actionBtn: 'PODIUM 🏆',
+    cardTitle: 'Testbook Podium Leaderboard',
+    cardSub: 'Check your State & All-India Rank',
+    cardBtn: 'PODIUM 🏆',
     isUrgent: false,
     days: [
       { letter: 'M', status: 'done' },
@@ -115,13 +112,12 @@ const STATE_CONFIGS = {
     streakTitle: '🌙 6 days',
     streakSub: 'Streak secured · Rest well',
     score: '151 / 200',
-    fillPct: '75.5%',
-    cutoffTag: 'DAY 6 SECURED ✓',
+    thumbLeft: '75%',
     acc: '81.0%',
     mocks: '29',
-    actionTitle: 'Tomorrow: Reasoning Mock 15',
-    actionSub: 'Scheduled for 8:30 AM tomorrow',
-    actionBtn: 'REMIND ⏰',
+    cardTitle: 'Tomorrow: Reasoning Mock 15',
+    cardSub: 'Scheduled for 8:30 AM tomorrow',
+    cardBtn: 'REMIND ⏰',
     isUrgent: false,
     days: [
       { letter: 'M', status: 'done' },
@@ -152,7 +148,7 @@ function renderWidget() {
   const mascotSrc = MASCOT_ASSETS[currentMascot] || MASCOT_ASSETS[cfg.mascot];
 
   if (currentSize === '4x5') {
-    // 4x5 Prime Cockpit
+    // 4x5 Prime Cockpit (Exact Image 1 layout)
     mount.innerHTML = `
       <div class="duo-widget-prime ${cfg.themeClass}" id="primeWidget">
         
@@ -189,27 +185,25 @@ function renderWidget() {
           `).join('')}
         </div>
 
-        <!-- 4. Bevel Quantified Readiness Pod (Frosted Glass, No Skeuomorphic Rainbows) -->
+        <!-- 4. Bevel Quantified Readiness Pod (Direct User Image 1 Spec) -->
         <div class="dw-readiness-pod" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
           <div class="dw-pod-header">
             <span class="dw-pod-label">EXAM READINESS</span>
             <span class="dw-score-val">${cfg.score}</span>
           </div>
 
-          <!-- Clean Dual-Tone Cutoff Track -->
-          <div class="dw-cutoff-track-wrapper">
-            <div class="dw-cutoff-track-bg">
-              <div class="dw-cutoff-track-fill" style="width: ${cfg.fillPct};"></div>
-              <div class="dw-cutoff-notch"></div>
-            </div>
+          <!-- Spectrum Track Slider -->
+          <div class="dw-spectrum-track">
+            <div class="dw-spectrum-thumb" style="left: ${cfg.thumbLeft};"></div>
           </div>
 
-          <div class="dw-cutoff-meta-row">
-            <span>${cfg.score.split('/')[0].trim()} SCORE</span>
-            <span style="color:#ffffff; font-weight:900;">CUTOFF: 138</span>
-            <span class="dw-cutoff-tag">${cfg.cutoffTag}</span>
+          <div class="dw-spectrum-legend">
+            <span>DANGER (110)</span>
+            <span style="font-weight:900;">CUTOFF: 138</span>
+            <span>SAFE (155+)</span>
           </div>
 
+          <!-- 2 Large Glanceable Stats Divided by Subtle Line -->
           <div class="dw-stats-row">
             <div class="dw-stat-item">
               <span class="dw-stat-number">${cfg.acc}</span>
@@ -222,13 +216,13 @@ function renderWidget() {
           </div>
         </div>
 
-        <!-- 5. Integrated Frosted Action Pill (Belongs to the Card! No Disjointed White Cutout) -->
-        <div class="dw-action-pill-row" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly from home screen...')">
-          <div class="dw-action-text-group">
-            <div class="dw-action-title">${cfg.actionTitle}</div>
-            <div class="dw-action-sub">${cfg.actionSub}</div>
+        <!-- 5. Pure White Tactile Action Card (Direct User Image 1 Spec) -->
+        <div class="dw-white-action-card" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly from home screen...')">
+          <div class="dw-card-left">
+            <div class="dw-card-title">${cfg.cardTitle}</div>
+            <div class="dw-card-sub">${cfg.cardSub}</div>
           </div>
-          <div class="dw-pill-button">${cfg.actionBtn}</div>
+          <div class="dw-card-pill-btn">${cfg.cardBtn}</div>
         </div>
 
       </div>

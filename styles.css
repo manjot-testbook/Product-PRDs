@@ -1,7 +1,7 @@
 /* ============================================================
    Testbook Android Home Screen Widget — Premium Light Edition
-   Directly Inspired by Duolingo (Image 1) & Apple/Bevel Widgets
-   Unified Gradient Canvas + Frosted Pods + Zero Clutter
+   Direct 1:1 Match to User Preferred Spec (Image 1)
+   Vibrant Sky Blue Gradient + Frosted Pod + Tactile White CTA
    ============================================================ */
 
 :root {
@@ -23,10 +23,11 @@
   --w-radius: 34px;
   --w-inner-radius: 20px;
   
-  /* Frosted White Pods on Blue Canvas */
+  /* Frosted Glass Pod Tokens */
   --w-pod-bg: rgba(255, 255, 255, 0.16);
-  --w-pod-border: rgba(255, 255, 255, 0.25);
+  --w-pod-border: rgba(255, 255, 255, 0.28);
   --w-pod-blur: blur(14px);
+  --w-primary-btn: #1e60db;
 }
 
 * {
@@ -313,13 +314,13 @@ body {
 
 /* ============================================================
    DUOLINGO LIGHT EDITION — 4×5 PRIME COCKPIT WIDGET
-   Full-Bleed Vibrant Gradient Canvas + Frosted Glass Accents
+   Full-Bleed Sky Blue Gradient Canvas (Image 1 Preferred Layout)
    ============================================================ */
 .duo-widget-prime {
   background: var(--w-duo-bg);
   box-shadow: var(--w-duo-shadow);
   border-radius: var(--w-radius);
-  padding: 1.35rem;
+  padding: 1.35rem 1.35rem 1.25rem 1.35rem;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -334,27 +335,31 @@ body {
 .duo-widget-prime.workout {
   background: linear-gradient(155deg, #0284c7 0%, #06b6d4 50%, #0ea5e9 100%);
   box-shadow: 0 24px 50px -12px rgba(2, 132, 199, 0.45);
+  --w-primary-btn: #0284c7;
 }
 
 /* State 3: Evening Urgency Aura (> 8 PM) */
 .duo-widget-prime.urgent {
   background: linear-gradient(155deg, #400f12 0%, #7f1d1d 55%, #b91c1c 100%);
   box-shadow: 0 24px 50px -12px rgba(185, 28, 28, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  --w-primary-btn: #b91c1c;
 }
 
 /* State 4: Milestone Celebration */
 .duo-widget-prime.celebration {
   background: linear-gradient(155deg, #1e1b4b 0%, #3730a3 55%, #d97706 100%);
   box-shadow: 0 24px 50px -12px rgba(217, 119, 6, 0.45);
+  --w-primary-btn: #3730a3;
 }
 
 /* State 5: Night Rest */
 .duo-widget-prime.sleepy {
   background: linear-gradient(155deg, #0f172a 0%, #1e293b 55%, #334155 100%);
   box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.45);
+  --w-primary-btn: #1e293b;
 }
 
-/* 1. Header Row (Exam on the Right!) */
+/* 1. Header Row (Exam Tag on the Right, Live Sync Removed) */
 .dw-header {
   display: flex;
   align-items: center;
@@ -362,13 +367,13 @@ body {
 }
 
 .dw-brand-tag {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 900;
   letter-spacing: -0.02em;
   color: #ffffff;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   opacity: 0.95;
 }
 
@@ -397,10 +402,10 @@ body {
 }
 
 .dw-exam-pill:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.32);
 }
 
-/* 2. Hero Zone: Streak & Floating Mascot (Duolingo Style) */
+/* 2. Hero Zone: Streak & Floating Mascot */
 .dw-hero-zone {
   display: flex;
   align-items: center;
@@ -468,29 +473,29 @@ body {
 }
 
 .dw-day-letter {
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   font-weight: 850;
   color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
 }
 
 .dw-day-capsule {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.32);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 900;
   color: #ffffff;
   backdrop-filter: blur(6px);
   transition: all 0.2s ease;
 }
 
-/* Completed Day (White Pill with Blue/Red Icon) */
+/* Completed Day (White Pill with Active Color Icon) */
 .dw-day-column.done .dw-day-capsule {
   background: #ffffff;
   color: #1e60db;
@@ -518,14 +523,16 @@ body {
   color: transparent;
 }
 
-/* 4. Bevel Quantified Readiness Pod (Frosted Glass, No Skeuomorphic Rainbows) */
+/* ============================================================
+   4. USER-PREFERRED FROSTED READINESS POD (IMAGE 1 SPEC)
+   ============================================================ */
 .dw-readiness-pod {
   background: var(--w-pod-bg);
   border: 1px solid var(--w-pod-border);
   backdrop-filter: var(--w-pod-blur);
   -webkit-backdrop-filter: var(--w-pod-blur);
   border-radius: var(--w-inner-radius);
-  padding: 0.95rem 1.15rem;
+  padding: 1rem 1.25rem 0.95rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -544,81 +551,66 @@ body {
 }
 
 .dw-pod-label {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dw-score-val {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.02em;
 }
 
-/* Clean Dual-Tone Cutoff Track (Sleek Apple/Bevel style) */
-.dw-cutoff-track-wrapper {
-  position: relative;
-  width: 100%;
-  margin: 0.2rem 0;
-}
-
-.dw-cutoff-track-bg {
+/* Spectrum Slider Track from User Image 1 */
+.dw-spectrum-track {
   width: 100%;
   height: 6px;
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(90deg, #ef4444 0%, #facc15 50%, #ffffff 75%, #4ade80 100%);
   position: relative;
-  overflow: visible;
+  margin: 0.15rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.dw-cutoff-track-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  transition: width 0.3s ease;
-}
-
-/* Cutoff Target Notch Line */
-.dw-cutoff-notch {
+.dw-spectrum-thumb {
   position: absolute;
-  top: -4px;
-  left: 62%;
-  width: 2px;
-  height: 14px;
+  top: -6px;
+  left: 65%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   background: #ffffff;
-  border-radius: 1px;
-  box-shadow: 0 0 6px white;
+  border: 3.5px solid #1e60db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: left 0.3s ease, border-color 0.3s ease;
 }
 
-.dw-cutoff-meta-row {
+.duo-widget-prime.urgent .dw-spectrum-thumb {
+  border-color: #b91c1c;
+}
+
+.duo-widget-prime.workout .dw-spectrum-thumb {
+  border-color: #0284c7;
+}
+
+.dw-spectrum-legend {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 0.62rem;
   font-weight: 850;
   color: rgba(255, 255, 255, 0.95);
-  margin-top: 0.3rem;
 }
 
-.dw-cutoff-tag {
-  background: rgba(255, 255, 255, 0.25);
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.6rem;
-  font-weight: 850;
-  color: #ffffff;
-}
-
-/* 2 Large Glanceable Stats */
+/* 2 Large Glanceable Stats Divided by Subtle Line */
 .dw-stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
-  padding-top: 0.5rem;
+  padding-top: 0.65rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   text-align: center;
 }
@@ -626,11 +618,11 @@ body {
 .dw-stat-item {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.15rem;
 }
 
 .dw-stat-number {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.03em;
@@ -638,76 +630,94 @@ body {
 }
 
 .dw-stat-caption {
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* 5. Integrated Frosted Action Pill (Belongs to the Card! No Disjointed White Cutout) */
-.dw-action-pill-row {
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: var(--w-inner-radius);
-  padding: 0.75rem 1rem;
+/* ============================================================
+   5. PURE WHITE TACTILE ACTION CARD (USER IMAGE 1 SPEC)
+   ============================================================ */
+.dw-white-action-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 0.9rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.dw-action-pill-row:hover {
-  background: rgba(255, 255, 255, 0.32);
+.dw-white-action-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.28);
 }
 
-.dw-action-text-group {
+.dw-card-left {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.2rem;
 }
 
-.dw-action-title {
-  font-size: 0.82rem;
-  font-weight: 900;
+.dw-card-title {
+  font-size: 0.9rem;
+  font-weight: 850;
   letter-spacing: -0.01em;
-  color: #ffffff;
-}
-
-.dw-action-sub {
-  font-size: 0.66rem;
-  font-weight: 750;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.dw-pill-button {
-  background: #ffffff;
   color: #1e60db;
-  font-size: 0.74rem;
-  font-weight: 900;
-  padding: 0.42rem 0.85rem;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  flex-shrink: 0;
 }
 
-.duo-widget-prime.urgent .dw-pill-button {
+.duo-widget-prime.urgent .dw-card-title {
   color: #b91c1c;
 }
 
-.duo-widget-prime.workout .dw-pill-button {
+.duo-widget-prime.workout .dw-card-title {
   color: #0284c7;
 }
 
+.dw-card-sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #3b82f6;
+  opacity: 0.9;
+}
+
+.duo-widget-prime.urgent .dw-card-sub {
+  color: #ef4444;
+}
+
+.duo-widget-prime.workout .dw-card-sub {
+  color: #0ea5e9;
+}
+
+.dw-card-pill-btn {
+  background: #1e60db;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 900;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(30, 96, 219, 0.35);
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.duo-widget-prime.urgent .dw-card-pill-btn {
+  background: #b91c1c;
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
+}
+
+.duo-widget-prime.workout .dw-card-pill-btn {
+  background: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
 /* ============================================================
-   COMPACT SIZES (EXACT 1:1 DUOLINGO FROM IMAGE 1)
+   ALTERNATIVE COMPACT SIZES
    ============================================================ */
 
 /* 4x2 Duolingo Widget */
