@@ -3,116 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Testbook Android Widget Studio — Lightweight & Modern</title>
+  <title>Testbook Android Home Screen Widget — Hybrid Obsidian Cockpit</title>
+  <meta name="description" content="Hybrid Android Home Screen Widget design combining Duolingo habit emotion, Bevel quantified performance, and Nike tactical test launcher in an ultra-premium Obsidian glass finish." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <header class="top-nav">
-    <div class="brand">
+  <!-- Top Studio Navigation -->
+  <header class="studio-nav">
+    <div class="brand-wrapper">
       <div class="brand-icon">T</div>
-      <div class="brand-name">Testbook <span>Widget Studio</span></div>
+      <div class="brand-text">Testbook <span>Widget Studio</span></div>
+      <span class="brand-badge">Hybrid Obsidian Glass</span>
     </div>
-    <div class="nav-actions">
-      <a href="PRD.md" class="nav-btn" target="_blank">📄 PRD Spec</a>
-      <a href="https://github.com/manjot-testbook/Product-PRDs" class="nav-btn" target="_blank">🐙 GitHub</a>
+    <div class="header-links">
+      <a href="PRD.md" class="nav-link" target="_blank">📄 PRD Spec</a>
+      <a href="https://github.com/manjot-testbook/Product-PRDs" class="nav-link primary" target="_blank">🐙 GitHub Repo</a>
     </div>
   </header>
 
-  <!-- Main Workspace -->
-  <div class="layout">
+  <!-- Studio Workspace -->
+  <main class="studio-layout">
     
-    <!-- Sidebar Controls -->
-    <aside class="panel">
+    <!-- Left Sidebar: Simulator Controls & Mascot Showcase -->
+    <aside class="controls-sidebar">
       
-      <!-- Size Selector -->
-      <div class="card">
-        <div class="card-title">Widget Size & Style</div>
+      <!-- Widget Form Factor -->
+      <div class="control-group">
+        <div class="group-title">
+          <span>Widget Size</span>
+        </div>
         <div class="chip-row">
-          <button class="chip size-chip active" data-size="4x5">4×5 Prime Cockpit</button>
-          <button class="chip size-chip" data-size="4x2-duo">4×2 Duolingo Streak</button>
-          <button class="chip size-chip" data-size="2x2-duo">2×2 Mascot Tile</button>
-          <button class="chip size-chip" data-size="bevel">4×2 Bevel Analytics</button>
-          <button class="chip size-chip" data-size="ahead">4×2 Ahead AI Card</button>
+          <button class="chip-btn size-btn active" data-size="4x5">4×5 Prime Cockpit</button>
+          <button class="chip-btn size-btn" data-size="4x2-duo">4×2 Duolingo Streak</button>
+          <button class="chip-btn size-btn" data-size="2x2-duo">2×2 Mascot Tile</button>
+          <button class="chip-btn size-btn" data-size="bevel">4×2 Bevel Analytics</button>
         </div>
       </div>
 
-      <!-- State & Time-of-Day Switcher -->
-      <div class="card">
-        <div class="card-title">State Machine (Duolingo Urgency)</div>
+      <!-- Urgency States (Duolingo Time-of-Day Machine) -->
+      <div class="control-group">
+        <div class="group-title">
+          <span>State & Urgency</span>
+        </div>
         <div class="chip-row">
-          <button class="chip state-chip active" data-state="morning">🌅 Morning</button>
-          <button class="chip state-chip" data-state="workout">💪 Studied Today</button>
-          <button class="chip state-chip" data-state="urgent">🚨 Streak at Risk (>8 PM)</button>
-          <button class="chip state-chip" data-state="celebration">🏆 Badge Unlocked</button>
-          <button class="chip state-chip" data-state="sleepy">🌙 Night Rest</button>
+          <button class="chip-btn state-btn active" data-state="morning">🌅 Morning</button>
+          <button class="chip-btn state-btn" data-state="workout">💪 Studied Today</button>
+          <button class="chip-btn state-btn" data-state="urgent">🚨 At Risk (>8 PM)</button>
+          <button class="chip-btn state-btn" data-state="celebration">🏆 Badge Milestone</button>
+          <button class="chip-btn state-btn" data-state="sleepy">🌙 Night Rest</button>
         </div>
       </div>
 
-      <!-- Mascot Gallery (Gemini 3.1) -->
-      <div class="card">
-        <div class="card-title">
-          <span>Mascot Asset (Gemini 3.1)</span>
-          <span style="color:#38bdf8; font-size:0.6rem;">5 Dynamic States</span>
+      <!-- Mascot Expressions (Gemini 3.1) -->
+      <div class="control-group">
+        <div class="group-title">
+          <span>Mascot Expression (Gemini 3.1)</span>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.4rem; margin-top:0.4rem;">
-          <div class="chip mascot-chip active" data-mascot="happy" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_happy.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Joyful Wave</span>
+        <div class="mascot-grid">
+          <div class="mascot-card active" data-mascot="happy">
+            <img src="assets/mascot/mascot_happy.png" alt="Happy" />
+            <span>Joyful</span>
           </div>
-          <div class="chip mascot-chip" data-mascot="workout" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_workout.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Headband</span>
+          <div class="mascot-card" data-mascot="workout">
+            <img src="assets/mascot/mascot_workout.png" alt="Workout" />
+            <span>Headband</span>
           </div>
-          <div class="chip mascot-chip" data-mascot="urgent" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_urgent.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Laser Eyes</span>
+          <div class="mascot-card" data-mascot="urgent">
+            <img src="assets/mascot/mascot_urgent.png" alt="Laser Eyes" />
+            <span>Laser Eyes</span>
           </div>
-          <div class="chip mascot-chip" data-mascot="celebration" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_celebration.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Trophy</span>
+          <div class="mascot-card" data-mascot="celebration">
+            <img src="assets/mascot/mascot_celebration.png" alt="Trophy" />
+            <span>Trophy</span>
           </div>
-          <div class="chip mascot-chip" data-mascot="sleepy" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_sleepy.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Nightcap</span>
+          <div class="mascot-card" data-mascot="sleepy">
+            <img src="assets/mascot/mascot_sleepy.png" alt="Nightcap" />
+            <span>Nightcap</span>
           </div>
-          <div class="chip mascot-chip" data-mascot="default" style="text-align:center; padding:0.4rem;">
-            <img src="assets/mascot/mascot_default.png" style="width:100%; height:40px; object-fit:contain;" />
-            <span style="font-size:0.6rem; display:block;">Original</span>
+          <div class="mascot-card" data-mascot="default">
+            <img src="assets/mascot/mascot_default.png" alt="Original" />
+            <span>Original</span>
           </div>
         </div>
       </div>
 
-      <!-- Theme Switcher -->
-      <div class="card">
-        <div class="card-title">Widget Surface Theme</div>
+      <!-- Phone Wallpaper -->
+      <div class="control-group">
+        <div class="group-title">
+          <span>Launcher Wallpaper</span>
+        </div>
         <div class="chip-row">
-          <button class="chip theme-chip active" data-theme="light">☀️ Light Glass</button>
-          <button class="chip theme-chip" data-theme="dark">🌙 Dark OLED</button>
+          <button class="chip-btn wp-btn active" data-wp="cosmic">🌌 Cosmic Dark</button>
+          <button class="chip-btn wp-btn" data-wp="mountains">🏔️ Alpine Dusk</button>
+          <button class="chip-btn wp-btn" data-wp="obsidian">🔷 Deep Pure</button>
         </div>
       </div>
 
-      <!-- Quick Navigation Mapping -->
-      <div class="card">
-        <div class="card-title">Zero-Friction Deep Links</div>
-        <div style="font-size:0.7rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.4rem;">
-          <div style="display:flex; justify-content:space-between;">
-            <span>[Start Mock ▶]</span>
-            <span style="color:#38bdf8; font-family:var(--font-mono);">SCR_17 (Instructions)</span>
+      <!-- Navigation Router Mapping -->
+      <div class="control-group">
+        <div class="group-title">
+          <span>1-Click App Navigation</span>
+        </div>
+        <div style="font-size:0.7rem; color:#94a3b8; display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.25rem;">
+            <span>[START ▶]</span>
+            <span style="color:#00f2fe; font-family:var(--font-mono);">SCR_17 (Instructions)</span>
           </div>
-          <div style="display:flex; justify-content:space-between;">
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.25rem;">
             <span>[Score Gauge]</span>
-            <span style="color:#38bdf8; font-family:var(--font-mono);">SCR_31 (Mock Analysis)</span>
+            <span style="color:#00f2fe; font-family:var(--font-mono);">SCR_31 (Mock Analysis)</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.25rem;">
+            <span>[Ask Doubt]</span>
+            <span style="color:#00f2fe; font-family:var(--font-mono);">SCR_07 (Samadhan AI)</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
             <span>[Streak Tap]</span>
-            <span style="color:#38bdf8; font-family:var(--font-mono);">SCR_12 (Tests Tab)</span>
+            <span style="color:#00f2fe; font-family:var(--font-mono);">SCR_12 (Tests Tab)</span>
           </div>
         </div>
       </div>
@@ -120,16 +133,16 @@
     </aside>
 
     <!-- Center Phone Stage -->
-    <main class="stage">
+    <section class="phone-stage">
       
-      <div class="phone">
+      <div class="phone-shell">
         
-        <div class="wallpaper">
+        <div class="phone-wallpaper wp-cosmic" id="wallpaperSurface">
           
-          <!-- Android Status Bar -->
-          <div class="status-bar">
+          <!-- Top Android Status Bar -->
+          <div class="android-top-bar">
             <span>9:41</span>
-            <div style="display:flex; gap:0.4rem; font-size:0.7rem;">
+            <div class="top-icons">
               <span>5G</span>
               <span>📶</span>
               <span>🔋</span>
@@ -137,141 +150,144 @@
           </div>
 
           <!-- At a Glance Date -->
-          <div class="glance-header">
+          <div class="glance-widget">
             <span>Monday, Oct 26</span>
-            <span>• 28°C ☀️</span>
+            <span style="opacity:0.75;">• 28°C ☀️</span>
           </div>
 
           <!-- ========================================================
-               WIDGET MOUNT POINT ON ANDROID HOME SCREEN
+               WIDGET MOUNTING AREA ON ANDROID HOME SCREEN
                ======================================================== -->
-          <div class="widget-slot" id="widgetSlot">
+          <div class="widget-mount-area" id="widgetMount">
             
-            <!-- 4x5 PRIME COCKPIT WIDGET -->
-            <div class="widget-prime" id="primeWidget">
+            <!-- 4x5 HYBRID PRIME COCKPIT WIDGET -->
+            <div class="hybrid-widget-prime" id="primeWidget">
               
               <!-- 1. Header Row -->
-              <div class="w-header">
-                <div class="w-exam-tag" id="examTag">
-                  <span class="w-exam-dot"></span>
-                  <span id="examText">RRB Group D</span>
-                  <span style="font-size:0.6rem; color:var(--w-muted);">▾</span>
+              <div class="hw-header-row">
+                <div class="hw-exam-pill" id="examPill" title="Click to switch target exam">
+                  <span class="hw-dot"></span>
+                  <span id="examTitle">RRB GROUP D</span>
+                  <span style="font-size:0.55rem; opacity:0.6;">▾</span>
                 </div>
-                <span class="w-live-badge">Updated 5m ago</span>
-              </div>
-
-              <!-- 2. Hero Mascot & Streak (Airy & Bold) -->
-              <div class="w-hero-zone">
-                <div class="w-hero-copy">
-                  <span class="w-hero-greeting" id="heroGreeting">Good morning, Santhosh</span>
-                  <span class="w-hero-streak" id="heroStreak">🔥 6 Days</span>
-                  <span class="w-hero-sub" id="heroSub">Goal: 3 / 5 mocks this week</span>
-                </div>
-                <div class="w-mascot-frame">
-                  <img src="assets/mascot/mascot_happy.png" id="mascotArt" class="w-mascot-art" alt="Testbook Buddy" />
+                <div class="hw-sync-tag">
+                  <span></span> LIVE SYNC
                 </div>
               </div>
 
-              <!-- 3. 5-Day Habit Circles (Clean & Minimal) -->
-              <div class="w-streak-pills">
-                <div class="w-pill-item done">
-                  <span class="w-pill-day">THU</span>
-                  <span class="w-pill-circle">✓</span>
-                </div>
-                <div class="w-pill-item done">
-                  <span class="w-pill-day">FRI</span>
-                  <span class="w-pill-circle">✓</span>
-                </div>
-                <div class="w-pill-item done">
-                  <span class="w-pill-day">SAT</span>
-                  <span class="w-pill-circle">✓</span>
-                </div>
-                <div class="w-pill-item done">
-                  <span class="w-pill-day">SUN</span>
-                  <span class="w-pill-circle">✓</span>
-                </div>
-                <div class="w-pill-item today">
-                  <span class="w-pill-day">TODAY</span>
-                  <span class="w-pill-circle">●</span>
-                </div>
-                <div class="w-pill-item upcoming">
-                  <span class="w-pill-day">TUE</span>
-                  <span class="w-pill-circle"></span>
-                </div>
-                <div class="w-pill-item upcoming">
-                  <span class="w-pill-day">WED</span>
-                  <span class="w-pill-circle"></span>
-                </div>
-              </div>
-
-              <!-- 4. Bevel-Style Score Spectrum & Stats (Light & Glanceable) -->
-              <div class="w-data-zone" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
-                <div class="w-gauge-row">
-                  <span class="w-gauge-lbl">Projected Score</span>
-                  <span class="w-gauge-val" id="scoreVal">142 / 200</span>
-                </div>
-                
-                <!-- Cutoff Spectrum Slider -->
-                <div class="w-spectrum-track">
-                  <div class="w-spectrum-thumb"></div>
-                </div>
-                
-                <div class="w-spectrum-labels">
-                  <span>Danger (110)</span>
-                  <span style="color:#0284c7; font-weight:850;">Cutoff: 138</span>
-                  <span style="color:#10b981;">Safe (155+)</span>
-                </div>
-
-                <div class="w-stats-pair">
-                  <div class="w-stat-col">
-                    <span class="w-stat-num" id="accVal">74.2%</span>
-                    <span class="w-stat-caption">Avg Accuracy (↑ 3%)</span>
+              <!-- 2. Hero Zone: Mascot & Streak (Duolingo Soul) -->
+              <div class="hw-hero-zone">
+                <div class="hw-hero-left">
+                  <span class="hw-micro-label" id="streakSubline">ACTIVE HABIT LOOP</span>
+                  <div class="hw-streak-display">
+                    <span class="hw-streak-number" id="streakNumber">🔥 6</span>
+                    <span class="hw-streak-unit" id="streakUnit">DAYS</span>
                   </div>
-                  <div class="w-stat-col">
-                    <span class="w-stat-num" id="testsVal">28 Mocks</span>
-                    <span class="w-stat-caption">Total Attempted</span>
+                  <!-- 5-Day Floating Habit Pills -->
+                  <div class="hw-habit-trail" id="habitTrail">
+                    <div class="hw-habit-bubble done">✓</div>
+                    <div class="hw-habit-bubble done">✓</div>
+                    <div class="hw-habit-bubble done">✓</div>
+                    <div class="hw-habit-bubble done">✓</div>
+                    <div class="hw-habit-bubble today">●</div>
+                    <div class="hw-habit-bubble">○</div>
+                    <div class="hw-habit-bubble">○</div>
                   </div>
                 </div>
-              </div>
-
-              <!-- 5. Single Tactile Action Row (Nike Training Club style) -->
-              <div class="w-action-row" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly...')">
-                <div class="w-action-text">
-                  <div class="w-action-title" id="actionTitle">RRB Group D Full Mock 14</div>
-                  <div class="w-action-sub" id="actionSub">90 min · 100 Qs · Full Length</div>
+                <!-- Floating Mascot -->
+                <div class="hw-mascot-anchor">
+                  <img src="assets/mascot/mascot_happy.png" id="heroMascot" class="hw-mascot-img" alt="Testbook Mascot" />
                 </div>
-                <div class="w-action-btn-pill" id="actionBtn">Start ▶</div>
               </div>
 
-              <!-- 6. Ahead-Style AI Diagnostic Nudge -->
-              <div class="w-ai-card">
-                <span>⚡</span>
-                <span id="aiCardCopy">“Chemistry numericals me 6 marks leak ho rahe hain. 10 Qs ka 5-min drill solve karo.”</span>
+              <!-- 3. Bevel Quantified Readiness Zone -->
+              <div class="hw-quantified-card" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
+                
+                <div class="hw-cutoff-row">
+                  <span class="hw-micro-label">PROJECTED SCORE</span>
+                  <div>
+                    <span class="hw-score-num" id="scoreDisplay">142</span>
+                    <span class="hw-score-total">/ 200</span>
+                  </div>
+                </div>
+
+                <!-- Glowing Cutoff Spectrum Slider -->
+                <div class="hw-spectrum-line">
+                  <div class="hw-spectrum-pin" id="spectrumPin"></div>
+                </div>
+
+                <div class="hw-spectrum-meta">
+                  <span>DANGER (110)</span>
+                  <span style="color:#00f2fe; font-weight:900;">CUTOFF: 138</span>
+                  <span style="color:#10b981;">SAFE (155+)</span>
+                </div>
+
+                <!-- 3 Stats Trio -->
+                <div class="hw-stats-trio">
+                  <div class="hw-stat-item">
+                    <span class="hw-stat-val highlight" id="accMetric">74.2%</span>
+                    <span class="hw-stat-tag">ACCURACY</span>
+                  </div>
+                  <div class="hw-stat-item">
+                    <span class="hw-stat-val" id="testsMetric">28</span>
+                    <span class="hw-stat-tag">MOCKS</span>
+                  </div>
+                  <div class="hw-stat-item">
+                    <span class="hw-stat-val" id="timeMetric">4.5h</span>
+                    <span class="hw-stat-tag">STUDY TIME</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 4. Tactical AI Anchor (Ahead Style) -->
+              <div class="hw-ai-nudge-pill">
+                <span class="hw-ai-spark">⚡</span>
+                <span id="aiFocusText">Focus: Skip Geometry → Arithmetic first confirms cutoff.</span>
+              </div>
+
+              <!-- 5. 1-Tap Fast-Path Launcher (Nike Training Club Style) -->
+              <div class="hw-launcher-cta" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly from home screen...')">
+                <div class="hw-cta-info">
+                  <div class="hw-cta-title" id="ctaTitle">RRB Group D Mock 14</div>
+                  <div class="hw-cta-sub" id="ctaSub">90 min · 100 Qs · Full Length</div>
+                </div>
+                <div class="hw-cta-btn" id="ctaBtn">START ▶</div>
+              </div>
+
+              <!-- 6. Quick Actions (Perplexity Style) -->
+              <div class="hw-action-pills">
+                <div class="hw-quick-btn" onclick="alert('Opening Global Search Discovery Screen (SCR_09)...')">
+                  <span>🔍</span> Search PYQs
+                </div>
+                <div class="hw-quick-btn" onclick="alert('Opening Samadhan AI Doubt Solver (SCR_07)...')">
+                  <span>🤖</span> Ask Samadhan AI
+                </div>
               </div>
 
             </div>
-            <!-- END 4x5 PRIME WIDGET -->
+            <!-- END HYBRID WIDGET -->
 
           </div>
 
-          <!-- Bottom Android Launcher App Dock -->
+          <!-- Bottom Android App Dock -->
           <div>
-            <div class="dock">
-              <div class="dock-icon dock-phone">📞</div>
-              <div class="dock-icon dock-msg">💬</div>
-              <div class="dock-icon dock-chrome">🌐</div>
-              <div class="dock-icon dock-tb">T</div>
+            <div class="android-dock">
+              <div class="dock-app dock-phone">📞</div>
+              <div class="dock-app dock-msg">💬</div>
+              <div class="dock-app dock-chrome">🌐</div>
+              <div class="dock-app dock-testbook">T</div>
             </div>
-            <div class="gesture-bar"></div>
+            <div class="android-home-bar"></div>
           </div>
 
         </div>
 
       </div>
 
-    </main>
+    </section>
 
-  </div>
+  </main>
 
   <script src="app.js"></script>
 </body>

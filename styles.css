@@ -1,6 +1,7 @@
 /* ============================================================
-   Testbook Android Widget Design System
-   Ultra-Clean, Lightweight, Glanceable Material 3 / iOS Aesthetic
+   Testbook Android Home Screen Widget System — Hybrid Edition
+   Obsidian Glassmorphism + Mobbin Typographic Precision
+   Duolingo Emotion + Bevel Performance + Nike Action Launcher
    ============================================================ */
 
 :root {
@@ -8,53 +9,42 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* App Shell Canvas */
-  --bg-app: #090d16;
-  --bg-sidebar: #0f172a;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --bg-desktop: #06090e;
+  --bg-sidebar: #0a0f18;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --text-main: #f8fafc;
+  --text-muted: #64748b;
 
-  /* Widget Card Design Tokens */
-  --w-radius: 32px;
+  /* ==========================================================
+     HYBRID OBSIDIAN GLASS WIDGET TOKENS (Direct from Mobbin)
+     ========================================================== */
+  --w-glass-bg: linear-gradient(165deg, rgba(17, 24, 39, 0.94) 0%, rgba(11, 17, 30, 0.97) 100%);
+  --w-glass-backdrop: blur(28px);
+  --w-border: rgba(255, 255, 255, 0.08);
+  --w-rim-light: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  --w-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --w-radius: 34px;
   --w-inner-radius: 20px;
-  
-  /* Light Widget Theme (Default: Crisp, airy, modern) */
-  --w-bg: #ffffff;
-  --w-card-bg: #f8fafc;
-  --w-border: rgba(0, 0, 0, 0.04);
-  --w-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --w-title: #0f172a;
-  --w-body: #334155;
-  --w-muted: #64748b;
-  --w-faint: #94a3b8;
-  --w-accent: #0284c7;
-  --w-accent-soft: #f0f9ff;
-  --w-accent-text: #0369a1;
 
-  --w-green: #10b981;
-  --w-green-soft: #ecfdf5;
-  --w-amber: #f59e0b;
-  --w-amber-soft: #fffbeb;
-  --w-red: #ef4444;
-  --w-red-soft: #fef2f2;
-}
-
-/* Dark Widget Theme */
-[data-theme="dark"] {
-  --w-bg: #131b2e;
-  --w-card-bg: #1c2640;
-  --w-border: rgba(255, 255, 255, 0.06);
-  --w-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.6);
-  --w-title: #f8fafc;
-  --w-body: #cbd5e1;
-  --w-muted: #94a3b8;
+  /* Content Colors */
+  --w-title: #ffffff;
+  --w-body: #e2e8f0;
   --w-faint: #64748b;
-  --w-accent: #38bdf8;
-  --w-accent-soft: rgba(56, 189, 248, 0.12);
-  --w-accent-text: #38bdf8;
-  --w-green-soft: rgba(16, 185, 129, 0.15);
-  --w-amber-soft: rgba(245, 158, 11, 0.15);
-  --w-red-soft: rgba(239, 68, 68, 0.15);
+  --w-micro-label: #94a3b8;
+  
+  /* Vibrant Accents */
+  --tb-cyan: #00f2fe;
+  --tb-cyan-glow: rgba(0, 242, 254, 0.25);
+  --tb-blue: #0284c7;
+  --tb-blue-glow: rgba(2, 132, 199, 0.3);
+  --tb-amber: #ffb800;
+  --tb-amber-glow: rgba(255, 184, 0, 0.25);
+  --tb-green: #10b981;
+  --tb-red: #ef4444;
+  --tb-red-glow: rgba(239, 68, 68, 0.35);
+
+  --w-inner-card: rgba(255, 255, 255, 0.035);
+  --w-inner-border: rgba(255, 255, 255, 0.06);
 }
 
 * {
@@ -64,8 +54,8 @@
 }
 
 body {
-  background: var(--bg-app);
-  color: var(--text-primary);
+  background: var(--bg-desktop);
+  color: var(--text-main);
   font-family: var(--font-display);
   min-height: 100vh;
   display: flex;
@@ -73,11 +63,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Header */
-.top-nav {
-  height: 56px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(20px);
+/* Studio Header */
+.studio-nav {
+  height: 58px;
+  background: rgba(10, 15, 24, 0.9);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -86,42 +76,52 @@ body {
   z-index: 50;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.brand-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #0284c7, #06b6d4);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 0.85rem;
-}
-
-.brand-name {
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.nav-actions {
+.brand-wrapper {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.nav-btn {
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #0284c7, #00f2fe);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.95rem;
+}
+
+.brand-text {
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+}
+
+.brand-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(0, 242, 254, 0.12);
+  color: #00f2fe;
+  border: 1px solid rgba(0, 242, 254, 0.25);
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  padding: 0.35rem 0.75rem;
+  color: #cbd5e1;
+  padding: 0.4rem 0.8rem;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -130,52 +130,55 @@ body {
   transition: all 0.15s ease;
 }
 
-.nav-btn:hover {
+.nav-link:hover {
   background: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-/* Workspace Layout */
-.layout {
+.nav-link.primary {
+  background: #0284c7;
+  color: white;
+  border-color: #0284c7;
+}
+
+/* Studio Layout */
+.studio-layout {
   flex: 1;
   display: grid;
   grid-template-columns: 340px 1fr;
-  height: calc(100vh - 56px);
-  overflow: hidden;
+  min-height: calc(100vh - 58px);
 }
 
-@media (max-width: 960px) {
-  .layout {
+@media (max-width: 1024px) {
+  .studio-layout {
     grid-template-columns: 1fr;
-    height: auto;
-    overflow: visible;
   }
 }
 
-/* Controls Panel */
-.panel {
+/* Sidebar Controls */
+.controls-sidebar {
   background: var(--bg-sidebar);
   border-right: 1px solid var(--border-subtle);
   padding: 1.25rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.03);
+.control-group {
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem;
 }
 
-.card-title {
-  font-size: 0.68rem;
-  font-weight: 800;
+.group-title {
+  font-size: 0.65rem;
+  font-weight: 850;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  color: #94a3b8;
   margin-bottom: 0.65rem;
   display: flex;
   align-items: center;
@@ -188,93 +191,149 @@ body {
   gap: 0.35rem;
 }
 
-.chip {
+.chip-btn {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary);
+  color: #94a3b8;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.35rem 0.65rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-.chip:hover {
+.chip-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   color: white;
 }
 
-.chip.active {
+.chip-btn.active {
   background: #0284c7;
-  border-color: #38bdf8;
+  border-color: #00f2fe;
   color: white;
-  box-shadow: 0 0 12px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.45);
 }
 
-/* Center Stage Canvas */
-.stage {
-  background: radial-gradient(circle at 50% 20%, #1e293b 0%, #090d16 80%);
+/* Mascot Preview Tiles */
+.mascot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.mascot-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9px;
+  padding: 0.35rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mascot-card:hover, .mascot-card.active {
+  border-color: #00f2fe;
+  background: rgba(0, 242, 254, 0.08);
+}
+
+.mascot-card img {
+  width: 100%;
+  height: 42px;
+  object-fit: contain;
+}
+
+.mascot-card span {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+/* Center Canvas Phone Stage */
+.phone-stage {
+  background: radial-gradient(circle at 50% 25%, #131b2e 0%, #06090e 75%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.5rem;
+  padding: 2rem 1rem;
   overflow-y: auto;
 }
 
-/* Authentic Phone Hardware Frame */
-.phone {
-  width: 384px;
-  min-height: 800px;
+/* Android Hardware Shell */
+.phone-shell {
+  width: 396px;
+  min-height: 825px;
   background: #000;
-  border-radius: 52px;
-  border: 10px solid #1e293b;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  border-radius: 54px;
+  border: 11px solid #1a2333;
+  box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Phone Wallpaper */
-.wallpaper {
+/* Phone Wallpaper Surface */
+.phone-wallpaper {
   flex: 1;
-  background: linear-gradient(180deg, #1e3a8a 0%, #0f172a 60%, #020617 100%);
-  padding: 0.75rem 0.9rem 1rem 0.9rem;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0.75rem 0.95rem 1rem 0.95rem;
   position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.wp-cosmic {
+  background-image: linear-gradient(180deg, rgba(6, 9, 14, 0.35) 0%, rgba(6, 9, 14, 0.75) 100%), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80');
+}
+.wp-mountains {
+  background-image: linear-gradient(180deg, rgba(6, 9, 14, 0.25) 0%, rgba(6, 9, 14, 0.75) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80');
+}
+.wp-obsidian {
+  background-image: radial-gradient(circle at 50% 30%, #1e293b 0%, #06090e 100%);
 }
 
 /* Android Status Bar */
-.status-bar {
+.android-top-bar {
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 0.8rem;
-  color: white;
-  font-size: 0.76rem;
+  color: #ffffff;
+  font-size: 0.78rem;
   font-weight: 700;
   user-select: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* At a Glance Header */
-.glance-header {
-  padding: 0.2rem 0.5rem 0.6rem 0.5rem;
+.top-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+}
+
+/* At a Glance Date */
+.glance-widget {
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
   color: white;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 750;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Widget Container on Launcher */
-.widget-slot {
+/* Widget Mounting Slot */
+.widget-mount-area {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -283,456 +342,490 @@ body {
 }
 
 /* ============================================================
-   LIGHTWEIGHT 4×5 PRIME WIDGET
-   No Clutter. Spacious, Focused, High-End.
+   THE HYBRID OBSIDIAN 4×5 PRIME COCKPIT WIDGET
    ============================================================ */
-.widget-prime {
-  background: var(--w-bg);
-  border-radius: var(--w-radius);
+.hybrid-widget-prime {
+  background: var(--w-glass-bg);
+  backdrop-filter: var(--w-glass-backdrop);
+  -webkit-backdrop-filter: var(--w-glass-backdrop);
   border: 1px solid var(--w-border);
-  box-shadow: var(--w-shadow);
-  padding: 1.25rem;
-  color: var(--w-title);
+  box-shadow: var(--w-shadow), var(--w-rim-light);
+  border-radius: var(--w-radius);
+  padding: 1.25rem 1.25rem 1.15rem 1.25rem;
+  color: var(--w-body);
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
-  transition: all 0.2s ease;
+  gap: 1.05rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+/* Evening Urgency Aura (> 8 PM) */
+.hybrid-widget-prime.urgent {
+  background: linear-gradient(165deg, rgba(69, 10, 10, 0.94) 0%, rgba(20, 5, 5, 0.98) 100%);
+  box-shadow: 0 24px 55px -12px rgba(239, 68, 68, 0.5), inset 0 1px 1px 0 rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+/* Milestone Celebration Aura */
+.hybrid-widget-prime.celebration {
+  background: linear-gradient(165deg, rgba(30, 24, 10, 0.94) 0%, rgba(15, 12, 5, 0.98) 100%);
+  box-shadow: 0 24px 55px -12px rgba(245, 158, 11, 0.4), inset 0 1px 1px 0 rgba(245, 158, 11, 0.3);
+  border-color: rgba(245, 158, 11, 0.25);
 }
 
 /* 1. Header Row */
-.w-header {
+.hw-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.w-exam-tag {
+.hw-exam-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: var(--w-card-bg);
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--w-title);
+  color: #ffffff;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.w-exam-dot {
+.hw-exam-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hw-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #0284c7;
+  background: var(--tb-cyan);
+  box-shadow: 0 0 8px var(--tb-cyan);
 }
 
-.w-live-badge {
-  font-size: 0.68rem;
-  font-weight: 750;
-  color: var(--w-muted);
-}
-
-/* 2. Hero Mascot & Greeting */
-.w-hero-zone {
+.hw-sync-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-faint);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.w-hero-copy {
-  display: flex;
-  flex-direction: column;
   gap: 0.35rem;
 }
 
-.w-hero-greeting {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--w-muted);
+.hw-sync-tag span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10b981;
 }
 
-.w-hero-streak {
-  font-size: 1.85rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: var(--w-title);
-  line-height: 1;
-}
-
-.w-hero-sub {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--w-body);
-}
-
-.w-mascot-frame {
-  width: 92px;
-  height: 92px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.w-mascot-art {
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.w-mascot-art:hover {
-  transform: scale(1.08) rotate(2deg);
-}
-
-/* 3. 5-Day Habit Circles */
-.w-streak-pills {
+/* 2. Hero Zone: Mascot & Streak (Duolingo Soul) */
+.hw-hero-zone {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4rem 0.25rem;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.w-pill-item {
+.hw-hero-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.25rem;
 }
 
-.w-pill-day {
+.hw-micro-label {
   font-size: 0.62rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--w-micro-label);
+}
+
+.hw-streak-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.hw-streak-number {
+  font-size: 2.35rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-streak-unit {
+  font-size: 0.82rem;
+  font-weight: 850;
+  color: var(--tb-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hybrid-widget-prime.urgent .hw-streak-unit {
+  color: #ff5e3a;
+}
+
+.hybrid-widget-prime.celebration .hw-streak-unit {
+  color: var(--tb-amber);
+}
+
+/* 7-Day Floating Habit Pills */
+.hw-habit-trail {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.hw-habit-bubble {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.hw-habit-bubble.done {
+  background: var(--tb-cyan);
+  color: #06090e;
+  box-shadow: 0 0 8px var(--tb-cyan-glow);
+}
+
+.hw-habit-bubble.today {
+  background: white;
+  color: #06090e;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Floating Mascot (Depth without card container) */
+.hw-mascot-anchor {
+  width: 98px;
+  height: 98px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hw-mascot-img {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hw-mascot-img:hover {
+  transform: scale(1.08) rotate(2deg);
+}
+
+/* 3. Bevel Quantified Readiness Zone */
+.hw-quantified-card {
+  background: var(--w-inner-card);
+  border: 1px solid var(--w-inner-border);
+  border-radius: var(--w-inner-radius);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hw-quantified-card:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.hw-cutoff-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.hw-score-num {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--tb-cyan);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-score-total {
+  font-size: 0.78rem;
+  color: var(--w-faint);
+  font-weight: 700;
+}
+
+/* Glowing Cutoff Spectrum Slider */
+.hw-spectrum-line {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 45%, #00f2fe 75%, #10b981 100%);
+  position: relative;
+  margin: 0.15rem 0;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+.hw-spectrum-pin {
+  position: absolute;
+  top: -4px;
+  left: 65%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #00f2fe;
+  box-shadow: 0 0 10px #00f2fe;
+}
+
+.hw-spectrum-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
   font-weight: 800;
   color: var(--w-faint);
 }
 
-.w-pill-circle {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 900;
-}
-
-.w-pill-item.done .w-pill-circle {
-  background: var(--w-green);
-  color: white;
-}
-
-.w-pill-item.today .w-pill-circle {
-  background: #0284c7;
-  color: white;
-  box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
-}
-
-.w-pill-item.upcoming .w-pill-circle {
-  background: var(--w-card-bg);
-  border: 1.5px solid var(--w-faint);
-  color: transparent;
-}
-
-/* 4. Bevel-Style Score Spectrum & Stats */
-.w-data-zone {
-  background: var(--w-card-bg);
-  border-radius: var(--w-inner-radius);
-  padding: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.w-gauge-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.w-gauge-lbl {
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--w-muted);
-}
-
-.w-gauge-val {
-  font-size: 0.82rem;
-  font-weight: 850;
-  color: #0284c7;
-}
-
-/* Cutoff Spectrum Slider */
-.w-spectrum-track {
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #10b981 100%);
-  position: relative;
-  margin: 0.2rem 0;
-}
-
-.w-spectrum-thumb {
-  position: absolute;
-  top: -4px;
-  left: 64%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: white;
-  border: 3px solid #0284c7;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-}
-
-.w-spectrum-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.6rem;
-  font-weight: 750;
-  color: var(--w-muted);
-}
-
-/* Stats Row */
-.w-stats-pair {
+/* 3 Big Glanceable Metrics */
+.hw-stats-trio {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
-  padding-top: 0.25rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--w-inner-border);
+  text-align: center;
 }
 
-.w-stat-col {
+.hw-stat-item {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 }
 
-.w-stat-num {
-  font-size: 1.15rem;
+.hw-stat-val {
+  font-size: 1.25rem;
   font-weight: 900;
-  color: var(--w-title);
-  letter-spacing: -0.02em;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }
 
-.w-stat-caption {
-  font-size: 0.62rem;
-  font-weight: 750;
-  color: var(--w-muted);
+.hw-stat-val.highlight {
+  color: var(--tb-cyan);
+}
+
+.hw-stat-tag {
+  font-size: 0.58rem;
+  font-weight: 850;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--w-micro-label);
 }
 
-/* 5. Clean Action Card (Nike Training Club style) */
-.w-action-row {
-  background: #0284c7;
-  color: white;
-  border-radius: var(--w-inner-radius);
-  padding: 0.75rem 0.95rem;
+/* 4. Tactical AI Anchor (Ahead Style) */
+.hw-ai-nudge-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+.hw-ai-spark {
+  color: var(--tb-amber);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* 5. 1-Tap Fast-Path Launcher (Nike Training Club Style) */
+.hw-launcher-cta {
+  background: linear-gradient(135deg, #0284c7 0%, #00f2fe 100%);
+  color: #06090e;
+  border-radius: 18px;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 8px 20px -4px var(--tb-blue-glow);
 }
 
-.w-action-row:hover {
-  background: #0369a1;
+.hw-launcher-cta:hover {
   transform: translateY(-1px);
+  box-shadow: 0 12px 26px -4px var(--tb-blue-glow);
 }
 
-.w-action-text {
+.hw-cta-info {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  overflow: hidden;
+  gap: 0.1rem;
 }
 
-.w-action-title {
-  font-size: 0.78rem;
-  font-weight: 850;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.hw-cta-title {
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #06090e;
 }
 
-.w-action-sub {
+.hw-cta-sub {
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 750;
+  opacity: 0.8;
 }
 
-.w-action-btn-pill {
-  background: white;
-  color: #0284c7;
-  font-size: 0.72rem;
+.hw-cta-btn {
+  background: #06090e;
+  color: #ffffff;
+  font-size: 0.74rem;
   font-weight: 850;
-  padding: 0.35rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 999px;
+  letter-spacing: 0.02em;
   flex-shrink: 0;
 }
 
-/* 6. Ahead-Style AI Diagnostic Card */
-.w-ai-card {
-  background: #fefce8;
-  border-radius: 14px;
-  padding: 0.65rem 0.85rem;
+/* 6. Quick Actions (Perplexity Style) */
+.hw-action-pills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.hw-quick-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 0.45rem 0.6rem;
+  border-radius: 12px;
   font-size: 0.72rem;
-  color: #713f12;
-  line-height: 1.4;
-  font-weight: 600;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.45rem;
-}
-
-[data-theme="dark"] .w-ai-card {
-  background: rgba(254, 240, 138, 0.1);
-  color: #fef08a;
-}
-
-/* ============================================================
-   ALTERNATIVE COMPACT WIDGET SIZES (Duolingo & Bevel style)
-   ============================================================ */
-
-/* 4x2 Duolingo Streak Widget */
-.widget-4x2 {
-  background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
-  border-radius: var(--w-radius);
-  padding: 1.15rem 1.25rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 185px;
-  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.35);
-  position: relative;
-  overflow: hidden;
-}
-
-.widget-4x2.urgent {
-  background: linear-gradient(135deg, #450a0a 0%, #991b1b 100%);
-  box-shadow: 0 16px 36px rgba(185, 28, 28, 0.4);
-}
-
-.widget-4x2-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  z-index: 2;
-}
-
-.w-4x2-streak {
-  font-size: 1.75rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.w-4x2-sub {
-  font-size: 0.74rem;
-  font-weight: 700;
-  opacity: 0.9;
-  margin-top: 0.3rem;
-}
-
-.w-4x2-mascot {
-  position: absolute;
-  right: 12px;
-  bottom: 0px;
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-}
-
-.w-4x2-pills {
-  display: flex;
-  gap: 0.4rem;
-  z-index: 2;
-}
-
-.w-4x2-pill {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  font-weight: 750;
+  color: #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 900;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.w-4x2-pill.done {
-  background: white;
-  color: #0284c7;
+.hw-quick-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-.widget-4x2.urgent .w-4x2-pill.done {
-  color: #991b1b;
-}
+/* ============================================================
+   COMPACT SIZES IN OBSIDIAN GLASS FINISH
+   ============================================================ */
 
-/* 2x2 Compact Tile (Duolingo style) */
-.widget-2x2-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.widget-2x2 {
-  width: 168px;
-  height: 168px;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  border-radius: 28px;
-  padding: 1rem;
+/* 4x2 Duolingo Streak Card */
+.hw-4x2-card {
+  background: var(--w-glass-bg);
+  backdrop-filter: var(--w-glass-backdrop);
+  border: 1px solid var(--w-border);
+  box-shadow: var(--w-shadow), var(--w-rim-light);
+  border-radius: var(--w-radius);
+  padding: 1.25rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.35);
+  height: 188px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
 }
 
-.widget-2x2.urgent {
-  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
-  box-shadow: 0 12px 30px rgba(185, 28, 28, 0.4);
+.hw-4x2-card.urgent {
+  background: linear-gradient(165deg, rgba(69, 10, 10, 0.95) 0%, rgba(20, 5, 5, 0.98) 100%);
+  box-shadow: 0 20px 45px rgba(239, 68, 68, 0.45);
 }
 
-.w-2x2-streak {
-  font-size: 1.6rem;
-  font-weight: 900;
-  line-height: 1;
+.hw-4x2-mascot {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
 }
 
-.w-2x2-sub {
-  font-size: 0.65rem;
-  font-weight: 700;
-  opacity: 0.85;
+/* 2x2 Mimo / Duolingo Compact Tile */
+.hw-2x2-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.w-2x2-mascot {
+.hw-2x2-tile {
+  width: 172px;
+  height: 172px;
+  background: var(--w-glass-bg);
+  backdrop-filter: var(--w-glass-backdrop);
+  border: 1px solid var(--w-border);
+  box-shadow: var(--w-shadow), var(--w-rim-light);
+  border-radius: 30px;
+  padding: 1.1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hw-2x2-tile.urgent {
+  background: linear-gradient(165deg, rgba(69, 10, 10, 0.95) 0%, rgba(20, 5, 5, 0.98) 100%);
+}
+
+.hw-2x2-mascot {
   position: absolute;
   right: -5px;
   bottom: -5px;
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
   object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
 }
 
-/* Bottom Android App Hotseat Dock */
-.dock {
+/* Bottom Android App Dock */
+.android-dock {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.65rem;
 }
 
-.dock-icon {
+.dock-app {
   width: 48px;
   height: 48px;
   border-radius: 14px;
@@ -741,18 +834,18 @@ body {
   justify-content: center;
   font-size: 1.3rem;
   color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 .dock-phone { background: linear-gradient(135deg, #10b981, #059669); }
 .dock-msg { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
 .dock-chrome { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.dock-tb { background: linear-gradient(135deg, #0284c7, #06b6d4); font-weight: 900; }
+.dock-testbook { background: linear-gradient(135deg, #0284c7, #00f2fe); font-weight: 900; }
 
-.gesture-bar {
+.android-home-bar {
   width: 100px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.45);
   border-radius: 2px;
-  margin: 0.5rem auto 0 auto;
+  margin: 0.45rem auto 0 auto;
 }

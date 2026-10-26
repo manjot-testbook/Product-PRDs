@@ -1,6 +1,6 @@
 /* ============================================================
    Testbook Android Home Screen Widget Interactive Engine
-   Airy, Lightweight, High-Fidelity Widget Simulator
+   Hybrid Obsidian Edition — Duolingo + Bevel + Nike Synthesis
    ============================================================ */
 
 const MASCOT_ASSETS = {
@@ -15,65 +15,84 @@ const MASCOT_ASSETS = {
 const STATE_CONFIGS = {
   morning: {
     mascot: 'happy',
-    greeting: 'Good morning, Santhosh',
-    streak: '🔥 6 Days',
-    sub: 'Goal: 3 / 5 mocks this week',
-    aiCopy: '“Chemistry numericals me 6 marks leak ho rahe hain. 10 Qs ka 5-min drill solve karo.”',
-    actionTitle: 'RRB Group D Full Mock 14',
-    actionSub: '90 min · 100 Qs · Full Length',
-    actionBtn: 'Start ▶',
-    isUrgent: false
+    subline: 'ACTIVE HABIT LOOP',
+    streak: '🔥 6',
+    unit: 'DAYS',
+    score: '142',
+    acc: '74.2%',
+    mocks: '28',
+    time: '4.5h',
+    aiFocus: 'Focus: Skip Geometry → Arithmetic first confirms cutoff.',
+    ctaTitle: 'RRB Group D Mock 14',
+    ctaSub: '90 min · 100 Qs · Full Length',
+    ctaBtn: 'START ▶',
+    className: 'hybrid-widget-prime'
   },
   workout: {
     mascot: 'workout',
-    greeting: 'Keep it going, Santhosh',
-    streak: '🔥 6 Days',
-    sub: 'Mock 14 submitted today · Secured!',
-    aiCopy: '“Reasoning me 100% accuracy recorded. Speed 4.2s per question improve hui.”',
-    actionTitle: 'Algebra 10-Q Speed Booster',
-    actionSub: '5 min · 10 Qs · Instant feedback',
-    actionBtn: 'Practice ▶',
-    isUrgent: false
+    subline: 'STREAK SECURED TODAY',
+    streak: '🔥 6',
+    unit: 'DAYS',
+    score: '151',
+    acc: '81.0%',
+    mocks: '29',
+    time: '6.0h',
+    aiFocus: 'Reasoning speed improved by 4.2s. 10 Algebra PYQs next.',
+    ctaTitle: 'Weak Area: Algebra Drill',
+    ctaSub: '15 min · 20 Qs · Instant feedback',
+    ctaBtn: 'PRACTICE ▶',
+    className: 'hybrid-widget-prime'
   },
   urgent: {
     mascot: 'urgent',
-    greeting: 'Streak at risk!',
-    streak: '🔥 6 Days',
-    sub: 'Resets at midnight · 3h left',
-    aiCopy: '“Sirf 5 min ka Daily Quiz solve karo — Day 6 streak reset hone se bach jayegi!”',
-    actionTitle: 'Daily Railway Speed Quiz',
-    actionSub: '5 min · 10 Qs · Save Streak',
-    actionBtn: 'Save Streak ⚡',
-    isUrgent: true
+    subline: 'STREAK AT RISK · 3H LEFT',
+    streak: '⚡ 6',
+    unit: 'RESET AT 12',
+    score: '142',
+    acc: '74.2%',
+    mocks: '28',
+    time: '4.5h',
+    aiFocus: '5-min Daily Quiz will prevent Day 6 streak wipeout.',
+    ctaTitle: 'Daily Railway Speed Quiz',
+    ctaSub: '5 min · 10 Qs · Save Streak',
+    ctaBtn: 'SAVE STREAK ⚡',
+    className: 'hybrid-widget-prime urgent'
   },
   celebration: {
     mascot: 'celebration',
-    greeting: 'Milestone Unlocked!',
-    streak: '🏆 7 Days',
-    sub: 'Weekly target 100% completed!',
-    aiCopy: '“Awesome! You unlocked the Top 100 consistency badge. Outperformed 92% students.”',
-    actionTitle: 'Testbook Podium Leaderboard',
-    actionSub: 'Check your State & All-India Rank',
-    actionBtn: 'Podium 🏆',
-    isUrgent: false
+    subline: 'WEEKLY TARGET 100% MET',
+    streak: '🏆 7',
+    unit: 'TOP 100',
+    score: '164',
+    acc: '88.5%',
+    mocks: '30',
+    time: '8.2h',
+    aiFocus: 'Milestone reached! You outperformed 92% students this week.',
+    ctaTitle: 'Testbook Podium Leaderboard',
+    ctaSub: 'Check your State & All-India Rank',
+    ctaBtn: 'PODIUM 🏆',
+    className: 'hybrid-widget-prime celebration'
   },
   sleepy: {
     mascot: 'sleepy',
-    greeting: 'Good night, Santhosh',
-    streak: '🌙 Day 6 Secured',
-    sub: 'Study goal met for today · Rest well',
-    aiCopy: '“Aaj ka target complete hua. Kal subah Reasoning Mock 15 se fresh start karenge.”',
-    actionTitle: 'Tomorrow: Reasoning Mock 15',
-    actionSub: 'Scheduled for 8:30 AM tomorrow',
-    actionBtn: 'Remind ⏰',
-    isUrgent: false
+    subline: 'DAY 6 SECURED · REST UP',
+    streak: '🌙 6',
+    unit: 'RESTED',
+    score: '151',
+    acc: '81.0%',
+    mocks: '29',
+    time: '6.0h',
+    aiFocus: 'Daily goal complete. Tomorrow 8:30 AM: Reasoning Mock 15.',
+    ctaTitle: 'Tomorrow: Reasoning Mock 15',
+    ctaSub: 'Scheduled for 8:30 AM tomorrow',
+    ctaBtn: 'REMIND ⏰',
+    className: 'hybrid-widget-prime'
   }
 };
 
 let currentSize = '4x5';
 let currentState = 'morning';
 let currentMascot = 'happy';
-let currentTheme = 'light';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderWidget();
@@ -81,222 +100,248 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderWidget() {
-  const slot = document.getElementById('widgetSlot');
-  if (!slot) return;
+  const mount = document.getElementById('widgetMount');
+  if (!mount) return;
+
   const cfg = STATE_CONFIGS[currentState];
   const mascotSrc = MASCOT_ASSETS[currentMascot] || MASCOT_ASSETS[cfg.mascot];
 
   if (currentSize === '4x5') {
-    // Render Airy 4x5 Prime Cockpit
-    slot.innerHTML = `
-      <div class="widget-prime" id="primeWidget">
+    // 4x5 Hybrid Prime Cockpit
+    mount.innerHTML = `
+      <div class="${cfg.className}" id="primeWidget">
         
         <!-- 1. Header Row -->
-        <div class="w-header">
-          <div class="w-exam-tag" id="examTag">
-            <span class="w-exam-dot"></span>
-            <span id="examText">RRB Group D</span>
-            <span style="font-size:0.6rem; color:var(--w-muted);">▾</span>
+        <div class="hw-header-row">
+          <div class="hw-exam-pill" id="examPill" title="Click to switch target exam">
+            <span class="hw-dot"></span>
+            <span id="examTitle">RRB GROUP D</span>
+            <span style="font-size:0.55rem; opacity:0.6;">▾</span>
           </div>
-          <span class="w-live-badge">Updated 5m ago</span>
-        </div>
-
-        <!-- 2. Hero Mascot & Streak -->
-        <div class="w-hero-zone">
-          <div class="w-hero-copy">
-            <span class="w-hero-greeting">${cfg.greeting}</span>
-            <span class="w-hero-streak">${cfg.streak}</span>
-            <span class="w-hero-sub">${cfg.sub}</span>
-          </div>
-          <div class="w-mascot-frame">
-            <img src="${mascotSrc}" class="w-mascot-art" alt="Testbook Buddy" />
+          <div class="hw-sync-tag">
+            <span></span> LIVE SYNC
           </div>
         </div>
 
-        <!-- 3. 5-Day Habit Circles -->
-        <div class="w-streak-pills">
-          <div class="w-pill-item done"><span class="w-pill-day">THU</span><span class="w-pill-circle">✓</span></div>
-          <div class="w-pill-item done"><span class="w-pill-day">FRI</span><span class="w-pill-circle">✓</span></div>
-          <div class="w-pill-item done"><span class="w-pill-day">SAT</span><span class="w-pill-circle">✓</span></div>
-          <div class="w-pill-item done"><span class="w-pill-day">SUN</span><span class="w-pill-circle">✓</span></div>
-          <div class="w-pill-item today"><span class="w-pill-day">TODAY</span><span class="w-pill-circle">●</span></div>
-          <div class="w-pill-item upcoming"><span class="w-pill-day">TUE</span><span class="w-pill-circle"></span></div>
-          <div class="w-pill-item upcoming"><span class="w-pill-day">WED</span><span class="w-pill-circle"></span></div>
-        </div>
-
-        <!-- 4. Bevel-Style Score Spectrum & Stats -->
-        <div class="w-data-zone" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
-          <div class="w-gauge-row">
-            <span class="w-gauge-lbl">Projected Score</span>
-            <span class="w-gauge-val">142 / 200</span>
-          </div>
-          
-          <div class="w-spectrum-track">
-            <div class="w-spectrum-thumb"></div>
-          </div>
-          
-          <div class="w-spectrum-labels">
-            <span>Danger (110)</span>
-            <span style="color:#0284c7; font-weight:850;">Cutoff: 138</span>
-            <span style="color:#10b981;">Safe (155+)</span>
-          </div>
-
-          <div class="w-stats-pair">
-            <div class="w-stat-col">
-              <span class="w-stat-num">74.2%</span>
-              <span class="w-stat-caption">Avg Accuracy (↑ 3%)</span>
+        <!-- 2. Hero Zone: Mascot & Streak (Duolingo Soul) -->
+        <div class="hw-hero-zone">
+          <div class="hw-hero-left">
+            <span class="hw-micro-label">${cfg.subline}</span>
+            <div class="hw-streak-display">
+              <span class="hw-streak-number">${cfg.streak}</span>
+              <span class="hw-streak-unit">${cfg.unit}</span>
             </div>
-            <div class="w-stat-col">
-              <span class="w-stat-num">28 Mocks</span>
-              <span class="w-stat-caption">Total Attempted</span>
+            <!-- 7-Day Floating Habit Pills -->
+            <div class="hw-habit-trail">
+              <div class="hw-habit-bubble done">✓</div>
+              <div class="hw-habit-bubble done">✓</div>
+              <div class="hw-habit-bubble done">✓</div>
+              <div class="hw-habit-bubble done">✓</div>
+              <div class="hw-habit-bubble today">●</div>
+              <div class="hw-habit-bubble">○</div>
+              <div class="hw-habit-bubble">○</div>
             </div>
           </div>
-        </div>
-
-        <!-- 5. Action Row -->
-        <div class="w-action-row" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly...')">
-          <div class="w-action-text">
-            <div class="w-action-title">${cfg.actionTitle}</div>
-            <div class="w-action-sub">${cfg.actionSub}</div>
+          <div class="hw-mascot-anchor">
+            <img src="${mascotSrc}" id="heroMascot" class="hw-mascot-img" alt="Testbook Mascot" />
           </div>
-          <div class="w-action-btn-pill">${cfg.actionBtn}</div>
         </div>
 
-        <!-- 6. Ahead-Style AI Card -->
-        <div class="w-ai-card">
-          <span>⚡</span>
-          <span>${cfg.aiCopy}</span>
+        <!-- 3. Bevel Quantified Readiness Zone -->
+        <div class="hw-quantified-card" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
+          <div class="hw-cutoff-row">
+            <span class="hw-micro-label">PROJECTED SCORE</span>
+            <div>
+              <span class="hw-score-num">${cfg.score}</span>
+              <span class="hw-score-total">/ 200</span>
+            </div>
+          </div>
+
+          <!-- Glowing Cutoff Spectrum Slider -->
+          <div class="hw-spectrum-line">
+            <div class="hw-spectrum-pin" style="left: ${cfg.score > 150 ? '78%' : '65%'};"></div>
+          </div>
+
+          <div class="hw-spectrum-meta">
+            <span>DANGER (110)</span>
+            <span style="color:#00f2fe; font-weight:900;">CUTOFF: 138</span>
+            <span style="color:#10b981;">SAFE (155+)</span>
+          </div>
+
+          <!-- 3 Stats Trio -->
+          <div class="hw-stats-trio">
+            <div class="hw-stat-item">
+              <span class="hw-stat-val highlight">${cfg.acc}</span>
+              <span class="hw-stat-tag">ACCURACY</span>
+            </div>
+            <div class="hw-stat-item">
+              <span class="hw-stat-val">${cfg.mocks}</span>
+              <span class="hw-stat-tag">MOCKS</span>
+            </div>
+            <div class="hw-stat-item">
+              <span class="hw-stat-val">${cfg.time}</span>
+              <span class="hw-stat-tag">STUDY TIME</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Tactical AI Anchor (Ahead Style) -->
+        <div class="hw-ai-nudge-pill">
+          <span class="hw-ai-spark">⚡</span>
+          <span>${cfg.aiFocus}</span>
+        </div>
+
+        <!-- 5. 1-Tap Fast-Path Launcher (Nike Training Club Style) -->
+        <div class="hw-launcher-cta" onclick="alert('Launching TEST_INSTRUCTIONS_SCREEN (SCR_17) directly...')">
+          <div class="hw-cta-info">
+            <div class="hw-cta-title">${cfg.ctaTitle}</div>
+            <div class="hw-cta-sub">${cfg.ctaSub}</div>
+          </div>
+          <div class="hw-cta-btn">${cfg.ctaBtn}</div>
+        </div>
+
+        <!-- 6. Quick Actions (Perplexity Style) -->
+        <div class="hw-action-pills">
+          <div class="hw-quick-btn" onclick="alert('Opening Global Search Discovery Screen (SCR_09)...')">
+            <span>🔍</span> Search PYQs
+          </div>
+          <div class="hw-quick-btn" onclick="alert('Opening Samadhan AI Doubt Solver (SCR_07)...')">
+            <span>🤖</span> Ask Samadhan AI
+          </div>
         </div>
 
       </div>
     `;
+    setupExamToggle();
   } else if (currentSize === '4x2-duo') {
-    // 4x2 Duolingo-style Streak Widget
-    const isUrgent = cfg.isUrgent;
-    slot.innerHTML = `
-      <div class="widget-4x2 ${isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
-        <div class="widget-4x2-top">
+    // 4x2 Duolingo Streak Card
+    mount.innerHTML = `
+      <div class="hw-4x2-card ${cfg.className.includes('urgent') ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
-            <div class="w-4x2-streak">${cfg.streak}</div>
-            <div class="w-4x2-sub">${cfg.sub}</div>
+            <span class="hw-micro-label" style="color:rgba(255,255,255,0.7);">${cfg.subline}</span>
+            <div style="font-size:2.1rem; font-weight:900; letter-spacing:-0.03em; margin:0.2rem 0; line-height:1;">
+              ${cfg.streak} <span style="font-size:0.9rem; color:#00f2fe;">DAYS</span>
+            </div>
+            <span style="font-size:0.75rem; font-weight:750; opacity:0.85;">Goal: 3 / 5 Mocks this week</span>
           </div>
         </div>
-        <img src="${mascotSrc}" class="w-4x2-mascot" alt="Mascot" />
-        <div class="w-4x2-pills">
-          <div class="w-4x2-pill done">✓</div>
-          <div class="w-4x2-pill done">✓</div>
-          <div class="w-4x2-pill done">✓</div>
-          <div class="w-4x2-pill done">✓</div>
-          <div class="w-4x2-pill">●</div>
+        <img src="${mascotSrc}" class="hw-4x2-mascot" alt="Mascot" />
+        <div class="hw-habit-trail" style="z-index:2; margin:0;">
+          <div class="hw-habit-bubble done">✓</div>
+          <div class="hw-habit-bubble done">✓</div>
+          <div class="hw-habit-bubble done">✓</div>
+          <div class="hw-habit-bubble done">✓</div>
+          <div class="hw-habit-bubble today">●</div>
         </div>
       </div>
     `;
   } else if (currentSize === '2x2-duo') {
-    // 2x2 Mascot Streak Tile
-    slot.innerHTML = `
-      <div class="widget-2x2-wrapper">
-        <div class="widget-2x2 ${cfg.isUrgent ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
+    // 2x2 Mascot Tile
+    mount.innerHTML = `
+      <div class="hw-2x2-wrapper">
+        <div class="hw-2x2-tile ${cfg.className.includes('urgent') ? 'urgent' : ''}" onclick="alert('Opening TESTS_DASHBOARD_SCREEN (SCR_12)...')">
           <div>
-            <div class="w-2x2-streak">${cfg.streak}</div>
-            <div class="w-2x2-sub">${cfg.isUrgent ? 'Save streak!' : 'Keep it up!'}</div>
+            <div class="hw-micro-label" style="font-size:0.58rem; color:rgba(255,255,255,0.65);">THIS WEEK</div>
+            <div style="font-size:1.85rem; font-weight:900; line-height:1.1; margin-top:0.2rem;">${cfg.streak}</div>
+            <span style="font-size:0.65rem; font-weight:800; color:#00f2fe;">${cfg.unit}</span>
           </div>
-          <img src="${mascotSrc}" class="w-2x2-mascot" alt="Mascot" />
+          <img src="${mascotSrc}" class="hw-2x2-mascot" alt="Mascot" />
         </div>
       </div>
     `;
   } else if (currentSize === 'bevel') {
-    // 4x2 Bevel Readiness Widget
-    slot.innerHTML = `
-      <div class="widget-prime" style="padding:1rem; gap:0.75rem;" onclick="alert('Opening Comprehensive Mock Analysis Screen (SCR_31)...')">
+    // 4x2 Bevel Analytics
+    mount.innerHTML = `
+      <div class="hybrid-widget-prime" style="padding:1.15rem; gap:0.8rem; cursor:pointer;" onclick="alert('Opening Mock Analysis Screen (SCR_31)...')">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:0.7rem; font-weight:850; text-transform:uppercase; color:var(--w-muted);">Exam Readiness Spectrum</span>
-          <span style="font-size:0.8rem; font-weight:900; color:#0284c7;">Score: 142 / 200</span>
+          <span class="hw-micro-label">CUTOFF READINESS</span>
+          <span style="font-size:0.85rem; font-weight:900; color:#00f2fe;">${cfg.score} / 200</span>
         </div>
-        <div class="w-spectrum-track" style="margin:0.2rem 0;">
-          <div class="w-spectrum-thumb" style="left:64%;"></div>
+        <div class="hw-spectrum-line" style="margin:0.25rem 0;">
+          <div class="hw-spectrum-pin" style="left:65%;"></div>
         </div>
-        <div class="w-spectrum-labels">
-          <span>Danger (110)</span>
-          <span style="color:#0284c7; font-weight:850;">Cutoff: 138</span>
-          <span style="color:#10b981;">Safe (155+)</span>
+        <div class="hw-spectrum-meta">
+          <span>DANGER (110)</span>
+          <span style="color:#00f2fe; font-weight:900;">CUTOFF: 138</span>
+          <span style="color:#10b981;">SAFE (155+)</span>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; text-align:center; padding-top:0.4rem; border-top:1px solid rgba(0,0,0,0.05);">
-          <div>
-            <div style="font-size:1.15rem; font-weight:900; color:#0284c7;">74%</div>
-            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Accuracy</div>
+        <div class="hw-stats-trio" style="padding-top:0.5rem;">
+          <div class="hw-stat-item">
+            <span class="hw-stat-val highlight">${cfg.acc}</span>
+            <span class="hw-stat-tag">ACCURACY</span>
           </div>
-          <div>
-            <div style="font-size:1.15rem; font-weight:900; color:#f59e0b;">35/50</div>
-            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Daily Qs</div>
+          <div class="hw-stat-item">
+            <span class="hw-stat-val">${cfg.mocks}</span>
+            <span class="hw-stat-tag">MOCKS</span>
           </div>
-          <div>
-            <div style="font-size:1.15rem; font-weight:900; color:#10b981;">91.8</div>
-            <div style="font-size:0.6rem; font-weight:750; color:var(--w-muted); text-transform:uppercase;">Percentile</div>
+          <div class="hw-stat-item">
+            <span class="hw-stat-val">${cfg.time}</span>
+            <span class="hw-stat-tag">STUDY TIME</span>
           </div>
-        </div>
-      </div>
-    `;
-  } else if (currentSize === 'ahead') {
-    // 4x2 Ahead AI Mindset Card
-    slot.innerHTML = `
-      <div style="background:#fef08a; border-radius:28px; padding:1.25rem; color:#713f12; display:flex; flex-direction:column; justify-content:space-between; height:185px; box-shadow:0 12px 30px rgba(234, 179, 8, 0.25); cursor:pointer;" onclick="alert('Opening Samadhan AI (SCR_07)...')">
-        <div style="font-size:0.65rem; font-weight:850; text-transform:uppercase; letter-spacing:0.05em; opacity:0.8;">
-          AAJ KA FOCUS · TESTBOOK AI
-        </div>
-        <div style="font-size:0.95rem; font-weight:750; line-height:1.45;">
-          “Chemistry numericals me 6 marks leak ho rahe hain. Formulas revise karne ke baad 10 Qs ka mini drill solve karo — cutoff pakka nikal jayega.”
-        </div>
-        <div style="font-size:0.72rem; font-weight:800; display:flex; align-items:center; gap:0.35rem; color:#854d0e;">
-          Practice 10 Questions Now ➔
         </div>
       </div>
     `;
   }
 }
 
+function setupExamToggle() {
+  const pill = document.getElementById('examPill');
+  if (pill) {
+    const list = ['RRB GROUP D', 'SSC CGL 2026', 'RRB NTPC', 'SBI CLERK'];
+    let idx = 0;
+    pill.addEventListener('click', () => {
+      idx = (idx + 1) % list.length;
+      document.getElementById('examTitle').textContent = list[idx];
+    });
+  }
+}
+
 function setupListeners() {
-  // Size Chips
-  document.querySelectorAll('.size-chip').forEach(btn => {
+  // Size switcher
+  document.querySelectorAll('.size-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentSize = btn.dataset.size;
-      document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderWidget();
     });
   });
 
-  // State Chips
-  document.querySelectorAll('.state-chip').forEach(btn => {
+  // State switcher
+  document.querySelectorAll('.state-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentState = btn.dataset.state;
       currentMascot = STATE_CONFIGS[currentState].mascot;
-      document.querySelectorAll('.state-chip').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.state-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.mascot-chip').forEach(b => {
-        b.classList.toggle('active', b.dataset.mascot === currentMascot);
+      document.querySelectorAll('.mascot-card').forEach(c => {
+        c.classList.toggle('active', c.dataset.mascot === currentMascot);
       });
       renderWidget();
     });
   });
 
-  // Mascot Chips
-  document.querySelectorAll('.mascot-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentMascot = btn.dataset.mascot;
-      document.querySelectorAll('.mascot-chip').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Mascot switcher
+  document.querySelectorAll('.mascot-card').forEach(card => {
+    card.addEventListener('click', () => {
+      currentMascot = card.dataset.mascot;
+      document.querySelectorAll('.mascot-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
       renderWidget();
     });
   });
 
-  // Theme Chips
-  document.querySelectorAll('.theme-chip').forEach(btn => {
+  // Wallpaper switcher
+  document.querySelectorAll('.wp-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      currentTheme = btn.dataset.theme;
-      document.body.setAttribute('data-theme', currentTheme);
-      document.querySelectorAll('.theme-chip').forEach(b => b.classList.remove('active'));
+      const wp = btn.dataset.wp;
+      const surface = document.getElementById('wallpaperSurface');
+      if (surface) {
+        surface.className = 'phone-wallpaper wp-' + wp;
+      }
+      document.querySelectorAll('.wp-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderWidget();
     });
   });
 }
