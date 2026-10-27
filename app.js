@@ -2,16 +2,45 @@
    Testbook Android Home Screen Widget Interactive Engine
    Duolingo & Bevel Inspired Premium Light Edition
    Direct Match to User Preferred Layout (Image 1)
+   Full 30-Mascot Expression Library (100% Transparent)
    ============================================================ */
 
-const MASCOT_ASSETS = {
-  default: 'assets/mascot/mascot_default.png',
-  happy: 'assets/mascot/mascot_happy.png',
-  workout: 'assets/mascot/mascot_workout.png',
-  urgent: 'assets/mascot/mascot_urgent.png',
-  celebration: 'assets/mascot/mascot_celebration.png',
-  sleepy: 'assets/mascot/mascot_sleepy.png'
-};
+const ALL_30_MASCOTS = [
+  { id: 'happy', label: 'Joyful Wave', file: 'assets/mascot/mascot_happy.png' },
+  { id: 'workout', label: 'Gym Headband', file: 'assets/mascot/mascot_workout.png' },
+  { id: 'urgent', label: 'Fiery Eyes', file: 'assets/mascot/mascot_urgent.png' },
+  { id: 'celebration', label: 'Trophy Cup', file: 'assets/mascot/mascot_celebration.png' },
+  { id: 'sleepy', label: 'Nightcap zzz', file: 'assets/mascot/mascot_sleepy.png' },
+  { id: 'default', label: 'Original', file: 'assets/mascot/mascot_default.png' },
+  
+  { id: 'morning_chai', label: 'Morning Chai', file: 'assets/mascot/mascot_morning_chai.png' },
+  { id: 'streak_flame', label: 'Holding Flame', file: 'assets/mascot/mascot_streak_flame.png' },
+  { id: 'streak_saved_relief', label: 'Phew Relief', file: 'assets/mascot/mascot_streak_saved_relief.png' },
+  { id: 'streak_frozen', label: 'Streak Frozen', file: 'assets/mascot/mascot_streak_frozen.png' },
+  { id: 'topper_shades', label: 'Thug Life', file: 'assets/mascot/mascot_topper_shades.png' },
+  { id: 'score_drop', label: 'Score Drop', file: 'assets/mascot/mascot_score_drop.png' },
+  
+  { id: 'calculating_nerd', label: 'Nerd Specs', file: 'assets/mascot/mascot_calculating_nerd.png' },
+  { id: 'eureka_bulb', label: 'Eureka Bulb', file: 'assets/mascot/mascot_eureka_bulb.png' },
+  { id: 'negative_marking', label: 'Band-Aid', file: 'assets/mascot/mascot_negative_marking.png' },
+  { id: 'magnifier_inspect', label: 'Magnifier', file: 'assets/mascot/mascot_magnifier_inspect.png' },
+  { id: 'reading_scroll', label: 'Revision Scroll', file: 'assets/mascot/mascot_reading_scroll.png' },
+  { id: 'tea_break', label: 'Tea Break', file: 'assets/mascot/mascot_tea_break.png' },
+  
+  { id: 'midnight_oil', label: 'Desk Lamp', file: 'assets/mascot/mascot_midnight_oil.png' },
+  { id: 'pen_sword', label: 'Pen Sword', file: 'assets/mascot/mascot_pen_sword.png' },
+  { id: 'formula_board', label: 'Chalkboard', file: 'assets/mascot/mascot_formula_board.png' },
+  { id: 'exam_alarm', label: 'Alarm Ringing', file: 'assets/mascot/mascot_exam_alarm.png' },
+  { id: 'calendar_days', label: '3 Days Left', file: 'assets/mascot/mascot_calendar_days.png' },
+  { id: 'sprinting', label: 'Speed Sprint', file: 'assets/mascot/mascot_sprinting.png' },
+  
+  { id: 'stopwatch', label: 'Stopwatch', file: 'assets/mascot/mascot_stopwatch.png' },
+  { id: 'meditation_calm', label: 'Zen Calm', file: 'assets/mascot/mascot_meditation_calm.png' },
+  { id: 'gold_medal', label: 'Gold Medal', file: 'assets/mascot/mascot_gold_medal.png' },
+  { id: 'ladoo_party', label: 'Ladoo Feast', file: 'assets/mascot/mascot_ladoo_party.png' },
+  { id: 'party_popper', label: 'Party Popper', file: 'assets/mascot/mascot_party_popper.png' },
+  { id: 'pass_pro_crown', label: 'Royal Crown', file: 'assets/mascot/mascot_pass_pro_crown.png' }
+];
 
 const STATE_CONFIGS = {
   morning: {
@@ -133,19 +162,49 @@ const STATE_CONFIGS = {
 
 let currentSize = '4x5';
 let currentState = 'morning';
-let currentMascot = 'happy';
+let currentMascotId = 'happy';
 
 document.addEventListener('DOMContentLoaded', () => {
+  renderMascotGrid();
   renderWidget();
   setupListeners();
 });
+
+function renderMascotGrid() {
+  const grid = document.getElementById('mascotGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  ALL_30_MASCOTS.forEach(m => {
+    const card = document.createElement('div');
+    card.className = `mascot-card ${m.id === currentMascotId ? 'active' : ''}`;
+    card.dataset.mascot = m.id;
+    card.title = m.label;
+    card.innerHTML = `
+      <img src="${m.file}" alt="${m.label}" />
+      <span>${m.label}</span>
+    `;
+    card.addEventListener('click', () => {
+      currentMascotId = m.id;
+      document.querySelectorAll('.mascot-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      renderWidget();
+    });
+    grid.appendChild(card);
+  });
+}
+
+function getMascotSrc() {
+  const found = ALL_30_MASCOTS.find(m => m.id === currentMascotId);
+  return found ? found.file : 'assets/mascot/mascot_happy.png';
+}
 
 function renderWidget() {
   const mount = document.getElementById('widgetMountArea');
   if (!mount) return;
 
   const cfg = STATE_CONFIGS[currentState];
-  const mascotSrc = MASCOT_ASSETS[currentMascot] || MASCOT_ASSETS[cfg.mascot];
+  const mascotSrc = getMascotSrc();
 
   if (currentSize === '4x5') {
     // 4x5 Prime Cockpit (Exact Image 1 layout)
@@ -296,22 +355,12 @@ function setupListeners() {
   document.querySelectorAll('.state-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentState = btn.dataset.state;
-      currentMascot = STATE_CONFIGS[currentState].mascot;
+      currentMascotId = STATE_CONFIGS[currentState].mascot;
       document.querySelectorAll('.state-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.mascot-card').forEach(c => {
-        c.classList.toggle('active', c.dataset.mascot === currentMascot);
+        c.classList.toggle('active', c.dataset.mascot === currentMascotId);
       });
-      renderWidget();
-    });
-  });
-
-  // Mascot switcher
-  document.querySelectorAll('.mascot-card').forEach(card => {
-    card.addEventListener('click', () => {
-      currentMascot = card.dataset.mascot;
-      document.querySelectorAll('.mascot-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
       renderWidget();
     });
   });

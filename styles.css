@@ -129,7 +129,7 @@ body {
 .layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 360px 1fr;
   min-height: calc(100vh - 58px);
 }
 
@@ -148,6 +148,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
+  max-height: calc(100vh - 58px);
 }
 
 .panel-card {
@@ -199,8 +200,14 @@ body {
   box-shadow: 0 4px 12px rgba(30, 96, 219, 0.3);
 }
 
-/* Mascot Thumbnails */
-.mascot-grid {
+/* 30 Mascot Scrollable Gallery Grid */
+.mascot-scroll-container {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.mascot-grid-30 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.4rem;
@@ -210,7 +217,7 @@ body {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 9px;
-  padding: 0.4rem;
+  padding: 0.35rem 0.2rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -219,6 +226,7 @@ body {
 .mascot-card:hover, .mascot-card.active {
   border-color: #1e60db;
   background: #eff6ff;
+  box-shadow: 0 2px 8px rgba(30, 96, 219, 0.2);
 }
 
 .mascot-card img {
@@ -229,10 +237,13 @@ body {
 
 .mascot-card span {
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 750;
   color: #64748b;
   margin-top: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Center Phone Canvas */
